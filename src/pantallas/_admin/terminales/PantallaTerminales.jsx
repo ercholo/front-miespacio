@@ -16,12 +16,12 @@ import {
   Typography,
 } from "@mui/material";
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
-import BoxCargando from "../../../navegacion/BoxCargando";
-import BoxErrorApi from "../../../navegacion/BoxErrorApi";
+import { BoxCargando } from "../../../navegacion/BoxCargando";
+import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
 import { useStore } from "react-redux";
 import API from "../../../api/api";
 import BoxErrorAutorizacion from "../../../pantallas/BoxErrorAutorizacion";
-import useAutorizacion from "../../../hooks/useAutorizacion";
+import {useAutorizacion} from "../../../hooks/useAutorizacion";
 import { useSnackbar } from "notistack";
 
 

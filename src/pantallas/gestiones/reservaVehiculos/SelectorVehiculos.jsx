@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import BoxErrorApi from '../../../navegacion/BoxErrorApi';
-import BoxCargando from '../../../navegacion/BoxCargando';
+import { BoxErrorApi } from '../../../navegacion/BoxErrorApi';
+import { BoxCargando } from '../../../navegacion/BoxCargando';
 import MsRestError from '@hefame/microservice-rest-error';
 import CalendarioVehiculo from './CalendarioVehiculo';
 

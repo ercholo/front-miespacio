@@ -12,7 +12,7 @@ import { es } from "date-fns/locale";
 
 import "./quill.css";
 import { useTheme } from "@emotion/react";
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 
 const DetalleNoticia = ({ noticia }) => {
 

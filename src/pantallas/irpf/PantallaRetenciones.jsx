@@ -6,8 +6,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { useStore } from 'react-redux';
-import BoxCargando from '../../navegacion/BoxCargando';
-import BoxErrorApi from '../../navegacion/BoxErrorApi';
+import { BoxCargando } from '../../navegacion/BoxCargando';
+import { BoxErrorApi } from '../../navegacion/BoxErrorApi';
 import API from '../../api/api';
 
 // CONSTANTES

@@ -1,4 +1,4 @@
-import useAutorizacion from "../../../hooks/useAutorizacion";
+import { useAutorizacion } from "../../../hooks/useAutorizacion";
 import BoxErrorAutorizacion from "../../BoxErrorAutorizacion";
 import React from "react";
 import { Routes, Route } from "react-router-dom";

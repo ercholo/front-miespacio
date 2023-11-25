@@ -1,6 +1,7 @@
 import { Alert, AlertTitle, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import useAutorizacion from "../hooks/useAutorizacion";
+import { useAutorizacion } from "../hooks/useAutorizacion";
+import PropTypes from 'prop-types';
 
 const ItemError = ({ error, mostarDetalles }) => {
     return (
@@ -63,3 +64,15 @@ const BoxErrorApi = ({ msError, titulo, snackbar, ...alertProps }) => {
 };
 
 export default BoxErrorApi;
+
+ItemError.propTypes = {
+    error: PropTypes.object,
+    mostarDetalles: PropTypes.bool,
+}
+
+BoxErrorApi.propTypes = {
+    msError: PropTypes.object,
+    titulo: PropTypes.string,
+    snackbar: PropTypes.element,
+}
+

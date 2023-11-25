@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import API from "../../api/api";
-import BoxCargando from "../../navegacion/BoxCargando";
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxCargando } from "../../navegacion/BoxCargando";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 import React from "react";
 import { useStore } from "react-redux";
 import { useParams } from "react-router";
-import useAutorizacion from "../../hooks/useAutorizacion";
+import { useAutorizacion } from "../../hooks/useAutorizacion";
 import BoxErrorAutorizacion from "../../pantallas/BoxErrorAutorizacion";
 import { CsvBuilder } from "filefy";
 

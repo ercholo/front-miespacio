@@ -12,7 +12,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
-const botones = [
+export const botones = [
   { texto: "Inicio", icono: HomeOutlinedIcon, link: "/" },
   //	{ texto: "personal", esTitulo: true },
   { texto: "Mis nóminas", icono: PaymentsIcon, link: "/nomina" },
@@ -44,12 +44,6 @@ const botones = [
     icono: HistoryEduIcon,
     link: "/irpf/retenciones",
   },
-  /*{
-		texto: "IRPF", icono: AccountBalanceIcon, subMenu: [
-			{ texto: "Situación", icono: AssignmentIndIcon, link: '/irpf/situacion' },
-			{ texto: "Incremento Voluntario", icono: PercentIcon, link: '/irpf/incremento' },
-		]
-	},*/
   { texto: "Mis accesos", icono: FingerprintIcon, link: "/accesos" },
 
   //{ texto: "Empresa", esTitulo: true },
@@ -96,12 +90,4 @@ const botones = [
       codigoEmpleado: [92409705, 90101521],
     },
   },
-  /*{
-		texto: "Gestiones", icono: BuildCircleOutlinedIcon, subMenu: [
-			{ texto: "Planificación de reuniones", icono: GroupsIcon, link: '/gestiones/planificador-reuniones' },
-			{ texto: "Reserva de Vehículos", icono: TimeToLeaveIcon, link: '/gestiones/reserva-vehiculos' }
-		]
-	},*/
 ];
-
-export default botones;

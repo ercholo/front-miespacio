@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 
-import BoxErrorApi from "../../../navegacion/BoxErrorApi";
-import BoxCargando from "../../../navegacion/BoxCargando";
+import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
+import { BoxCargando } from "../../../navegacion/BoxCargando";
 import LineaReserva from "./LineaReserva";
 
 

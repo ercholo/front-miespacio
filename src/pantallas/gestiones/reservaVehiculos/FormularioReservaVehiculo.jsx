@@ -13,7 +13,7 @@ import { addHours, addMinutes, differenceInCalendarDays, endOfDay, format } from
 import { es } from "date-fns/locale";
 
 import DialogNormativa from "./DialogNormativa";
-import BoxErrorApi from "../../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
 
 
 

@@ -19,7 +19,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import DialogCrearTicket from "./DialogCrearTicket";
 import { redux_tickets_listar, redux_tickets_select_EstadoListado, redux_tickets_select_Listado } from "../../redux/tickets/ticketsSlice";
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";

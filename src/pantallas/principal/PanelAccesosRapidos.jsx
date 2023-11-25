@@ -7,7 +7,7 @@ import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import SendIcon from "@mui/icons-material/Send";
 import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 import GroupsIcon from "@mui/icons-material/Groups";
-import useAutorizacion from "../../hooks/useAutorizacion";
+import { useAutorizacion } from "../../hooks/useAutorizacion";
 import { useNavigate } from "react-router";
 
 export default function PanelAccesosRapidos() {

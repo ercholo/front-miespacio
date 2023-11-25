@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { preBusquedaNoticias } from '../../../redux/api/noticiasGestion/noticiasGestionSlice.listado';
 import { format, isAfter } from 'date-fns';
 import { preBorrarNoticiaEdicion } from '../../../redux/api/noticiasGestion/noticiasGestionSlice.edicion';
-import BoxErrorApi from '../../../navegacion/BoxErrorApi';
+import { BoxErrorApi } from '../../../navegacion/BoxErrorApi';
 
 const MiniaturaGestionNoticia = ({ noticia }) => {
 

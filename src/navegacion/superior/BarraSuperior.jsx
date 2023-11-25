@@ -15,8 +15,7 @@ import { useSelector } from 'react-redux';
 import MenuUsuario from './MenuUsuario';
 import { redux_usuario_select_Usuario } from '../../redux/usuario/usuarioSlice';
 
-
-const BarraSuperior = memo(({ onMenuLateralClick }) => {
+export const BarraSuperior = memo(({ onMenuLateralClick }) => {
 	
 	const usuario = useSelector(redux_usuario_select_Usuario);
 	const tituloPantalla = useSelector(state => state.pantalla.titulo);
@@ -65,4 +64,3 @@ BarraSuperior.propTypes = {
 }
 
 BarraSuperior.displayName = 'BarraSuperior';
-export default BarraSuperior

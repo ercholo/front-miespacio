@@ -32,7 +32,7 @@ import { addMinutes, format } from "date-fns";
 import { crearNoticiaEdicion } from "../../../redux/api/noticiasGestion/noticiasGestionSlice.edicion";
 import { clearCreadorNoticias } from "../../../redux/api/noticiasGestion/noticiasGestionSlice";
 import Resizer from "react-image-file-resizer";
-import BoxErrorApi from "../../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
 
 const reductorImagen = (file) => {
     return new Promise((resolve) => {

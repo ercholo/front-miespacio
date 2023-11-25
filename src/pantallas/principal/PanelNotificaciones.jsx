@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useAutorizacion from "hooks/useAutorizacion";
+import { useAutorizacion } from "hooks/useAutorizacion";
 //import FavoriteIcon from "@mui/icons-material/Favorite";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
 

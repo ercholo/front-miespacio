@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { redux_usuario_select_Asignaciones, redux_usuario_select_Usuario } from "../../redux/usuario/usuarioSlice";
 import { consultaMaestroAsignaciones } from "../../redux/api/maestroAsignaciones/maestroAsignacionesSlice";
 import { redux_tickets_crear, redux_tickets_listar, redux_tickets_ResetearEstadoCrear, redux_tickets_select_EstadoCrear, } from "../../redux/tickets/ticketsSlice";
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 import AlertaAdjuntoGrande from "./subcomponentes/AlertaAdjuntoGrande";
 import BotonAbrirDialogo from "./subcomponentes/BotonAbrirDialogo";
 import DialogoTicketCreado from "./subcomponentes/DialogoTicketCreado";

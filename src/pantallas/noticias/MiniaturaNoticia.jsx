@@ -1,6 +1,6 @@
 import {useState, useRef, useCallback, useEffect } from "react";
 
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 
 import { Box, Button, Paper, Skeleton, Typography } from "@mui/material";
 import { useStore } from "react-redux";

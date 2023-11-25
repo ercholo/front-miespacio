@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BoxErrorApi from '../../navegacion/BoxErrorApi';
+import { BoxErrorApi } from '../../navegacion/BoxErrorApi';
 
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';

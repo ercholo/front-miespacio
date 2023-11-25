@@ -3,8 +3,8 @@ import React from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { redux_usuario_inicializar, redux_usuario_select_EstadoInicializacion } from "../redux/usuario/usuarioSlice";
-import BoxErrorApi from "../navegacion/BoxErrorApi";
-import BoxCargando from "../navegacion/BoxCargando";
+import { BoxErrorApi } from "../navegacion/BoxErrorApi";
+import { BoxCargando } from "../navegacion/BoxCargando";
 
 
 

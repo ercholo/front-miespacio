@@ -1,14 +1,14 @@
 import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import API from "../../api/api";
-import BoxCargando from "../../navegacion/BoxCargando";
-import BoxErrorApi from "../../navegacion/BoxErrorApi";
+import { BoxCargando } from "../../navegacion/BoxCargando";
+import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 import React from "react";
 import { useStore } from "react-redux";
 import { useParams } from "react-router";
 import { useSnackbar } from "notistack";
 import { isBefore } from "date-fns";
-import useAutorizacion from "../../hooks/useAutorizacion";
+import { useAutorizacion } from "../../hooks/useAutorizacion";
 
 export default function PantallaEncuestas() {
 	const redux = useStore();

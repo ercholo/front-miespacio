@@ -10,7 +10,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { preConsultaNoticiaEdicion } from '../../../redux/api/noticiasGestion/noticiasGestionSlice.edicion';
 import FormularioEdicionNoticia from './FormularioEdicionNoticia';
 import { Link } from 'react-router-dom';
-import BoxErrorApi from '../../../navegacion/BoxErrorApi';
+import { BoxErrorApi } from '../../../navegacion/BoxErrorApi';
 
 export default function PantallaEdicionNoticia() {
 

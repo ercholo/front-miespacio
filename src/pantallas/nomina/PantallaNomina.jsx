@@ -8,8 +8,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { addDays } from 'date-fns';
 import API from '../../api/api';
 import { useStore } from 'react-redux';
-import BoxCargando from '../../navegacion/BoxCargando';
-import BoxErrorApi from '../../navegacion/BoxErrorApi';
+import { BoxCargando } from '../../navegacion/BoxCargando';
+import { BoxErrorApi } from '../../navegacion/BoxErrorApi';
 
 
 

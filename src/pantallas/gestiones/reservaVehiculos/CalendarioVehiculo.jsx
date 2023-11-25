@@ -8,8 +8,8 @@ import { addDays, addYears, differenceInCalendarDays, endOfDay, isBefore, isSame
 import { red } from '@mui/material/colors';
 
 // import FormularioReservaVehiculo from './FormularioReservaVehiculo';
-import BoxErrorApi from '../../../navegacion/BoxErrorApi';
-import BoxCargando from '../../../navegacion/BoxCargando';
+import { BoxErrorApi } from '../../../navegacion/BoxErrorApi';
+import { BoxCargando } from '../../../navegacion/BoxCargando';
 import LineaReserva from './LineaReserva';
 import FormularioReservaVehiculo from './FormularioReservaVehiculo';
 

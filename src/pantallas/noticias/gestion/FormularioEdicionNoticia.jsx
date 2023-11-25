@@ -35,7 +35,7 @@ import { addMinutes, format } from "date-fns";
 import { actualizaNoticiaEdicion } from "../../../redux/api/noticiasGestion/noticiasGestionSlice.edicion";
 import { clearEditorNoticias } from "../../../redux/api/noticiasGestion/noticiasGestionSlice";
 import Resizer from "react-image-file-resizer";
-import BoxErrorApi from "../../../navegacion/BoxErrorApi";
+import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
 
 const SELECTORES_AUDIENCIA = [
     "posicionAsignada",

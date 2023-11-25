@@ -1,6 +1,8 @@
-import useAutorizacion from '../hooks/useAutorizacion'
+import { useAutorizacion } from '../hooks/useAutorizacion'
+import PropTypes from 'prop-types';
 
 const BoxAutorizado = ({ permisos, children }) => {
+    
     const autorizado = useAutorizacion(permisos);
 
     if (autorizado) return children;
@@ -8,3 +10,8 @@ const BoxAutorizado = ({ permisos, children }) => {
 };
 
 export default BoxAutorizado;
+
+BoxAutorizado.propTypes = {
+    permisos: PropTypes.obj,
+    children: PropTypes.node,
+}

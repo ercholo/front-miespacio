@@ -14,8 +14,8 @@ import { useSelector } from "react-redux";
 
 import Pantallas from "./pantallas/Pantallas";
 
-import BarraSuperior from "./navegacion/superior/BarraSuperior";
-import DrawerLateral from "./navegacion/lateral/DrawerLateral";
+import { BarraSuperior } from "./navegacion/superior/BarraSuperior";
+import { DrawerLateral } from "./navegacion/lateral/DrawerLateral";
 import { Container, Paper } from "@mui/material";
 import { redux_usuario_select_Usuario } from "./redux/usuario/usuarioSlice";
 import { SnackbarProvider } from "notistack";

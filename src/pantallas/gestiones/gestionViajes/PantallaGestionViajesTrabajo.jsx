@@ -17,8 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { redux_gestionViajes_limpiarSolicitud, redux_gestionViajes_select_EstadoSolicitud, redux_gestionViajes_solicitar } from '../../../redux/gestion/viajesSlice';
 
 import Paso, { PASOS, useFormularioViajes } from './pasos/Pasos';
-import BoxErrorApi from '../../../navegacion/BoxErrorApi';
-import BoxCargando from '../../../navegacion/BoxCargando';
+import { BoxErrorApi } from '../../../navegacion/BoxErrorApi';
+import { BoxCargando } from '../../../navegacion/BoxCargando';
 
 
 
