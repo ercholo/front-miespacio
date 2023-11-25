@@ -1,0 +1,35 @@
+.quill img {
+	max-width: 100%;
+}
+
+.quill p {
+	padding: 0 !important;
+	margin: 0 !important;
+	margin-bottom: 15px !important;
+}
+
+.quill .ql-align-justify {
+	text-align: justify;
+}
+
+.quill .ql-align-center {
+	text-align: center;
+}
+
+.quill .ql-align-left {
+	text-align: left;
+}
+
+.quill .ql-align-right {
+	text-align: right;
+}
+
+iframe {
+	width: 100%;
+	margin: auto;
+}
+
+.ql-video {
+	height: 400px;
+	margin: auto;
+}
