@@ -1,24 +1,21 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import pantallaReducer from './pantallaSlice';
-import usuarioReducer from './usuario/usuarioSlice';
-import gestionViajesReducer from './gestion/viajesSlice';
+import { pantallaSlice } from './pantallaSlice';
+import { usuarioSlice } from './usuario/usuarioSlice';
+import { gestionViajesSlice } from './gestion/viajesSlice';
 
-
-
-import apiReducer from './api/apiSlice';
-import anticiposReducer from './api/anticiposSlice';
-import catalogoReducer from './api/catalogoSlice';
-import carritoReducer from './api/carritoSlice';
-import valesReducer from './api/valesSlice';
-import albaranPdfReducer from './api/albaranPdfSlice';
-import accesosReducer from './api/accesosSlice';
-import ticketsReducer from './tickets/ticketsSlice';
+import { apiSlice } from './api/apiSlice';
+import { anticiposSlice } from './api/anticiposSlice';
+import { catalogoSlice } from './api/catalogoSlice';
+import { carritoSlice } from './api/carritoSlice';
+import { valesSlice } from './api/valesSlice';
+import { descargaAlbaranPdfSlice } from './api/albaranPdfSlice';
+import { accesosSlice } from './api/accesosSlice';
+import { ticketsSlice } from './tickets/ticketsSlice';
 import salasReducer from './api/salas/salasSlice';
-import noticiasGestionReducer from './api/noticiasGestion/noticiasGestionSlice';
-import noticiasReducer from './api/noticias/noticiasSlice';
-import maestroAsignacionesReducer from './api/maestroAsignaciones/maestroAsignacionesSlice';
-
+import { noticiasGestionSlice } from './api/noticiasGestion/noticiasGestionSlice';
+import { noticiasSlice } from './api/noticias/noticiasSlice';
+import { maestroAsignacionesSlice } from './api/maestroAsignaciones/maestroAsignacionesSlice';
 
 window.haztelaNegra = (token) => {
 
@@ -37,26 +34,25 @@ window.haztelaNegra = (token) => {
 
 }
 
-
 export const store = configureStore({
 	reducer: {
-		usuario: usuarioReducer,
+		usuario: usuarioSlice.reducer,
 		gestion: combineReducers({
-			viajes: gestionViajesReducer
+			viajes: gestionViajesSlice.reducer
 		}),
-		api: apiReducer,
-		catalogo: catalogoReducer,
-		carrito: carritoReducer,
-		vales: valesReducer,
-		albaranPdf: albaranPdfReducer,
-		pantalla: pantallaReducer,
-		accesos: accesosReducer,
-		tickets: ticketsReducer,
-		anticipos: anticiposReducer,
+		api: apiSlice.reducer,
+		catalogo: catalogoSlice.reducer,
+		carrito: carritoSlice.reducer,
+		vales: valesSlice.reducer,
+		albaranPdf: descargaAlbaranPdfSlice.reducer,
+		pantalla: pantallaSlice.reducer,
+		accesos: accesosSlice.reducer,
+		tickets: ticketsSlice.reducer,
+		anticipos: anticiposSlice.reducer,
 		salas: salasReducer,
-		noticiasGestion: noticiasGestionReducer,
-		noticias: noticiasReducer,
-		maestroAsignaciones: maestroAsignacionesReducer,
+		noticiasGestion: noticiasGestionSlice.reducer,
+		noticias: noticiasSlice.reducer,
+		maestroAsignaciones: maestroAsignacionesSlice.reducer,
 	}
 });
 

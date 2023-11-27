@@ -27,7 +27,8 @@ const ItemError = ({ error, mostarDetalles }) => {
     );
 };
 
-const BoxErrorApi = ({ msError, titulo, snackbar, ...alertProps }) => {
+export const BoxErrorApi = ({ msError, titulo, snackbar, ...alertProps }) => {
+
     const mostarDetalles = useAutorizacion({ centroCoste: ["DTHF"] });
 
     if (msError?.toJSON) msError = msError.toJSON();
@@ -62,8 +63,6 @@ const BoxErrorApi = ({ msError, titulo, snackbar, ...alertProps }) => {
         </Alert>
     );
 };
-
-export default BoxErrorApi;
 
 ItemError.propTypes = {
     error: PropTypes.object,

@@ -77,6 +77,7 @@ export const ticketsSlice = createSlice({
 		creado: null
 	},
 	reducers: {
+		// eslint-disable-next-line no-unused-vars
 		redux_tickets_ResetearEstadoCrear: (state, _) => {
 			state.async.crear = { estado: 'inicial', error: null };
 			state.creado = null;
@@ -132,6 +133,4 @@ export const redux_tickets_select_EstadoCrear = createCustomSelector(s3, (estado
 	}
 })
 
-
 export const { redux_tickets_ResetearEstadoCrear } = ticketsSlice.actions;
-export default ticketsSlice.reducer;

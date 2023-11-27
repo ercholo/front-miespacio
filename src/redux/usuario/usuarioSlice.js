@@ -4,7 +4,6 @@ import { jwtDecode } from "jwt-decode";
 import { createCustomSelector } from '../../redux/createCustomSelector';
 import MsRestError from '@hefame/microservice-rest-error';
 
-
 export const redux_usuario_inicializar = createAsyncThunk('usuario/redux_usuario_inicializar',
 	async (payload, redux) => {
 
@@ -111,7 +110,7 @@ export const usuarioSlice = createSlice({
 		tokens: { sap: null, api: null }
 	},
 	reducers: {
-		redux_usuario_logout: (state, action) => {
+		redux_usuario_logout: (state) => {
 
 			if (state.async.timeout.logoff) {
 				console.log(`Se elimina el timeout ${state.async.timeout.logoff}`)
@@ -157,17 +156,18 @@ const s2 = [
 	(state) => state.usuario.apellidos,
 	(state) => state.usuario.email,
 ]
+
 export const redux_usuario_select_Usuario = createCustomSelector(s2, (codigoEmpleado, nombre, apellidos, email) => {
 	if (codigoEmpleado)
 		return { codigoEmpleado, nombre, apellidos, email }
 	return null;
 })
 
-
 const s3 = [
 	(state) => state.usuario.pedidos,
 	(state) => state.usuario.codigoEmpleado
 ]
+
 export const redux_usuario_select_InfoPedidos = createCustomSelector(s3, (pedidos, codigoEmpleado) => {
 	if (codigoEmpleado)
 		return {
@@ -212,4 +212,3 @@ export const redux_usuario_select_SSO = createCustomSelector(s6, (sso) => {
 })
 
 export const { redux_usuario_logout } = usuarioSlice.actions;
-export default usuarioSlice.reducer;

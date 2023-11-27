@@ -18,7 +18,7 @@ redux_gestionViajes_solicitar.extraReducers = function (builder) {
 		state.async[asyncFoo].estado = 'cargando';
 		state.async[asyncFoo].error = null;
 	});
-	builder.addCase(redux_gestionViajes_solicitar.fulfilled, (state, action) => {
+	builder.addCase(redux_gestionViajes_solicitar.fulfilled, (state) => {
 		state.async[asyncFoo].estado = 'completado';
 		state.async[asyncFoo].error = null;
 	});
@@ -37,7 +37,7 @@ export const gestionViajesSlice = createSlice({
 		},
 	},
 	reducers: {
-		redux_gestionViajes_limpiarSolicitud: (state, action) => {
+		redux_gestionViajes_limpiarSolicitud: (state) => {
 			state.async.solicitar = { estado: 'inicial', error: null };
 		}
 	},
@@ -57,4 +57,3 @@ export const redux_gestionViajes_select_EstadoSolicitud = createCustomSelector(s
 })
 
 export const { redux_gestionViajes_limpiarSolicitud } = gestionViajesSlice.actions;
-export default gestionViajesSlice.reducer;

@@ -25,6 +25,7 @@ export const accesosSlice = createSlice({
 		error: null
 	},
 	reducers: {
+		// eslint-disable-next-line no-unused-vars
 		limpiarEstadoConsulta: (state, _) => {
 			state.estado = 'inicial';
 			state.resultado = null;
@@ -51,7 +52,4 @@ export const accesosSlice = createSlice({
 	},
 });
 
-
-
 export const { limpiarEstadoConsulta } = accesosSlice.actions;
-export default accesosSlice.reducer;

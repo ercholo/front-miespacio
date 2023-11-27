@@ -1,13 +1,12 @@
-import React from 'react';
+import {useEffect} from 'react';
 
 import { createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 export const pantallaSlice = createSlice({
 	name: 'api',
 	initialState: {
-		titulo: 'Tu Espacio'// 👩 👵 👩‍🦰 👩‍🦱 👩‍🦳 👱‍♀️' //🎀
+		titulo: 'Mi Espacio'// 👩 👵 👩‍🦰 👩‍🦱 👩‍🦳 👱‍♀️' //🎀
 	},
 	reducers: {
 		setTituloPantalla: (state, action) => {
@@ -16,11 +15,12 @@ export const pantallaSlice = createSlice({
 	}
 });
 
-export function usePantalla(titulo) {
+export const usePantalla = (titulo) => {
+
 	let dispatch = useDispatch();
 	let pantalla = useSelector(state => state.pantalla);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (pantalla.titulo !== titulo) {
 			dispatch(setTituloPantalla({ titulo }))
 		}
@@ -29,4 +29,3 @@ export function usePantalla(titulo) {
 }
 
 export const { setTituloPantalla } = pantallaSlice.actions;
-export default pantallaSlice.reducer;

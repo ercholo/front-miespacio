@@ -25,15 +25,19 @@ export const DrawerLateral = memo(({ abierto, fnCerrar, fnAbrir }) => {
 	let [friki, setFriki] = useState(false)
 
 	if (!usuario) return null;
+	console.log(usuario)
 
 	return (
 		<SwipeableDrawer anchor="left" open={abierto} onClose={fnCerrar} onOpen={fnAbrir} disableSwipeToOpen={usuario ? null : true}	>
+
 			<Box sx={{ bgcolor: 'primary.main', minWidth: '380px' }}>
+
 				<IconButton onClick={fnCerrar} sx={{ my: 1.6, ml: 1, mr: 2, position: 'absolute' }}>
 					<ChevronLeftIcon sx={{ fontSize: '38px', color: "primary.contrastText" }} />
 				</IconButton>
 
 				<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 3 }}>
+
 					<Box sx={{
 						m: 'auto',
 						width: 150,
@@ -46,6 +50,7 @@ export const DrawerLateral = memo(({ abierto, fnCerrar, fnAbrir }) => {
 						onClick={() => [92409705, 90202335, 90101151].includes(usuario.codigoEmpleado) && setFriki(f => !f)}
 						className={[92409705, 90202335, 90101151].includes(usuario.codigoEmpleado) && "gira"}
 					/>
+
 					<Box sx={{ my: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 						<Typography variant="h5" component="div" sx={{ color: "primary.contrastText", textTransform: 'capitalize', fontWeight: 'bold' }}>{usuario.nombre}</Typography>
 						<Typography variant="h6" component="div" sx={{ color: "primary.contrastText", textTransform: 'capitalize' }}>{usuario.apellidos}</Typography>
@@ -59,6 +64,7 @@ export const DrawerLateral = memo(({ abierto, fnCerrar, fnAbrir }) => {
 			<List>
 				{botones.map((boton, i) => <BotonDeMenuLateral key={i} fnCerrarDrawer={fnCerrar} {...boton} />)}
 			</List>
+
 		</SwipeableDrawer>
 	)
 

@@ -24,7 +24,7 @@ export const busquedaNoticias = createAsyncThunk('noticiasGestion/busquedaNotici
 );
 
 
-export default function build(builder) {
+export const listadoReducer = (builder) => {
 	builder
 		.addCase(preBusquedaNoticias.fulfilled, (state, action) => {
 			state.listado.consulta = action.payload;

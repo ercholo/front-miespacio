@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import SAP from '../../api/sap';
+import { consultarAccesos } from '../../redux/api/accesosSlice';
 
 import { Alert, AlertTitle, Box, CircularProgress, TextField, Typography } from "@mui/material";
 
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineOppositeContent, TimelineDot } from '@mui/lab/';
 
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
@@ -21,26 +17,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-
 import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
 
-import { useDispatch, useSelector } from 'react-redux';
-import SAP from '../../api/sap';
-import { consultarAccesos } from '../../redux/api/accesosSlice';
 import { differenceInMinutes, format, formatDuration, parse } from 'date-fns';
 
-
-/*
-const Acceso = ({ direccion, hora, motivo, transcurrido }) => {
-	return <Typography component="div">{direccion}, {format(hora, 'HH:mm')}, {motivo}, {transcurrido}</Typography>
-}
-*/
-
-
-export default function PantallaAccesosPrueba() {
+export const PantallaAccesosPrueba = () => {
 
 	const dispatch = useDispatch();
-	const [fecha, setFecha] = React.useState(new Date());
+	const [fecha, setFecha] = useState(new Date());
 
 	useEffect(() => {
 		dispatch(consultarAccesos({ fecha }))
@@ -50,13 +34,13 @@ export default function PantallaAccesosPrueba() {
 	const accesos = useSelector(state => state.accesos.resultado);
 	const error = useSelector(state => state.accesos.error);
 
-	const fichajes = React.useMemo(() => {
+	const fichajes = useMemo(() => {
 
 		let f = [];
 
 		let ultimaSalida = null;
 
-		accesos?.forEach((fichaje, i) => {
+		accesos?.forEach((fichaje) => {
 
 			let entrada = parse(fichaje.entrada, 'HHmmSS', new Date())
 			let salida = fichaje.salida === '000000' ? null : parse(fichaje.salida, 'HHmmSS', new Date())

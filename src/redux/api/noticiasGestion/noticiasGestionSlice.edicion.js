@@ -36,6 +36,7 @@ export const actualizaNoticiaEdicion = createAsyncThunk('noticiasGestion/actuali
 
 
 export const crearNoticiaEdicion = createAsyncThunk('noticiasGestion/crear',
+	// eslint-disable-next-line no-unused-vars
 	async ({ idNoticia, payload }, redux) => {
 		try {
 			let respuesta = await API(redux).noticias.post(payload);
@@ -68,7 +69,7 @@ export const borrarNoticiaEdicion = createAsyncThunk('noticiasGestion/borrarId',
 	}
 );
 
-export default function build(builder) {
+export const edicionReducer = (builder) => {
 	builder
 		.addCase(preConsultaNoticiaEdicion.fulfilled, (state, action) => {
 			state.editor.idNoticia = action.payload;

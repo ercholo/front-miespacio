@@ -12,7 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useSelector } from 'react-redux';
 
 // SUBCOMPONENTES
-import MenuUsuario from './MenuUsuario';
+import { MenuUsuario } from './MenuUsuario';
 import { redux_usuario_select_Usuario } from '../../redux/usuario/usuarioSlice';
 
 export const BarraSuperior = memo(({ onMenuLateralClick }) => {

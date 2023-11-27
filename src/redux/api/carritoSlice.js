@@ -61,15 +61,15 @@ export const carritoSlice = createSlice({
 				}
 			}
 		},
-		limpiarCarrito: (state, _) => {
+		limpiarCarrito: (state) => {
 			state.materiales = [];
 		},
-		limpiarEstadoCreacionPedido: (state, _) => {
+		limpiarEstadoCreacionPedido: (state) => {
 			state.estado = 'inicial';
 			state.resultado = null;
 			state.error = null;
 		},
-		marcarCreacionPedidoVisualizada: (state, _) => {
+		marcarCreacionPedidoVisualizada: (state) => {
 			state.estado = 'visualizada';
 		},
 	},
@@ -94,7 +94,4 @@ export const carritoSlice = createSlice({
 	},
 });
 
-
-
 export const { setMaterialEnCarrito, addMaterialEnCarrito, limpiarCarrito, limpiarEstadoCreacionPedido, marcarCreacionPedidoVisualizada } = carritoSlice.actions;
-export default carritoSlice.reducer;

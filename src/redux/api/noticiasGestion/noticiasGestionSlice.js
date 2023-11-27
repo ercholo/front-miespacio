@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import listadoReducer from './noticiasGestionSlice.listado'
-import edicionReducer from './noticiasGestionSlice.edicion'
+import { listadoReducer } from './noticiasGestionSlice.listado'
+import { edicionReducer } from './noticiasGestionSlice.edicion'
 
 export const noticiasGestionSlice = createSlice({
 	name: 'noticiasGestion',
@@ -61,4 +61,3 @@ export const noticiasGestionSlice = createSlice({
 });
 
 export const { clearEditorNoticias, clearCreadorNoticias } = noticiasGestionSlice.actions
-export default noticiasGestionSlice.reducer;

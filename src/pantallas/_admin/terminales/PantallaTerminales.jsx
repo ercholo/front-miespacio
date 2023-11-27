@@ -1,45 +1,30 @@
-import React from "react";
-
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
+import PropTypes from 'prop-types';
+import { Box, FormControl, InputLabel, MenuItem, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from "@mui/material";
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
-import { BoxCargando } from "../../../navegacion/BoxCargando";
-import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
+import { BoxCargando, BoxErrorApi } from "../../../navegacion/";
 import { useStore } from "react-redux";
 import API from "../../../api/api";
 import BoxErrorAutorizacion from "../../../pantallas/BoxErrorAutorizacion";
-import {useAutorizacion} from "../../../hooks/useAutorizacion";
+import { useAutorizacion } from "../../../hooks/useAutorizacion";
 import { useSnackbar } from "notistack";
 
+export const TableRowTerminal = ({ id, centro, nombre, funciones, idVisualTime }) => {
 
-const TableRowTerminal = ({ id, centro, nombre, funciones, idVisualTime }) => {
   const { enqueueSnackbar } = useSnackbar();
   const redux = useStore();
-  const [qActualizacion, setQActualizacion] = React.useState({
+  const [qActualizacion, setQActualizacion] = useState({
     estado: "completado",
     error: null,
   });
-  const refTerminalVt = React.useRef();
-  const [inputCambiado, setInputCambiado] = React.useState(false);
-  //	const [valorVt, setValorVt] = React.useState(parseInt(idVisualTime) || '');
+  const refTerminalVt = useRef();
+  const [inputCambiado, setInputCambiado] = useState(false);
 
-  const fnActualizarTerminal = React.useCallback(async () => {
+  const fnActualizarTerminal = useCallback(async () => {
     if (!inputCambiado) return;
     setInputCambiado(false);
     setQActualizacion({ estado: "cargando", error: null });
+
     try {
       await API(redux).terminales.put(id, refTerminalVt.current.value);
       setQActualizacion({ estado: "completado", error: null });
@@ -48,14 +33,15 @@ const TableRowTerminal = ({ id, centro, nombre, funciones, idVisualTime }) => {
           <Typography variant="h6">Terminal {id}</Typography>
           <Typography variant="body2">({nombre})</Typography>
           <Typography variant="body1">
-            {refTerminalVt.current.value ? (
-              <>
-                Ahora apunta contra el ID <b>{refTerminalVt.current.value}</b>{" "}
-                de VisualTime
-              </>
-            ) : (
-              <>Ya no se envían sus registros a VT</>
-            )}
+            {
+              refTerminalVt.current.value
+                ? (<>
+                  Ahora apunta contra el ID <b>{refTerminalVt.current.value}</b>{" "}
+                  de VisualTime
+                </>)
+                : (
+                  <>Ya no se envían sus registros a VT</>
+                )}
           </Typography>
         </Box>,
         {
@@ -123,21 +109,21 @@ const TableRowTerminal = ({ id, centro, nombre, funciones, idVisualTime }) => {
   );
 };
 
-const PantallaTerminales = () => {
+export const PantallaTerminales = () => {
   const autorizado = useAutorizacion({
     funcionAsignada: [70091000],
-    codigoEmpleado: [92409705, 90101521],
+    codigoEmpleado: [92409705, 90101521, 90101151],
   });
 
   const redux = useStore();
-  const [qTerminales, setQTerminales] = React.useState({
+  const [qTerminales, setQTerminales] = useState({
     estado: "cargando",
     terminales: null,
     error: null,
   });
   const terminales = qTerminales.terminales;
 
-  const centros = React.useMemo(() => {
+  const centros = useMemo(() => {
     const c = new Set();
     if (terminales) {
       terminales.forEach((terminal) => {
@@ -147,7 +133,7 @@ const PantallaTerminales = () => {
     return [...c];
   }, [terminales]);
 
-  const funciones = React.useMemo(() => {
+  const funciones = useMemo(() => {
     const c = new Set();
     if (terminales) {
       terminales.forEach((terminal) => {
@@ -159,13 +145,13 @@ const PantallaTerminales = () => {
     return [...c];
   }, [terminales]);
 
-  const [filtros, setFiltros] = React.useState({
+  const [filtros, setFiltros] = useState({
     centro: null,
     funcion: null,
     mapeado: null,
   });
 
-  const fnCargarTerminales = React.useCallback(async () => {
+  const fnCargarTerminales = useCallback(async () => {
     setQTerminales((v) => {
       return {
         estado: "cargando",
@@ -186,11 +172,11 @@ const PantallaTerminales = () => {
     }
   }, [setQTerminales, redux]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fnCargarTerminales();
   }, [fnCargarTerminales]);
 
-  const terminalesFiltrados = React.useMemo(() => {
+  const terminalesFiltrados = useMemo(() => {
     if (!terminales) return null;
     let filtrados = terminales;
 
@@ -238,6 +224,7 @@ const PantallaTerminales = () => {
         justifyContent: "flex-end",
       }}
     >
+
       <FormControl sx={{ m: 1, minWidth: 150 }}>
         <InputLabel>Centro</InputLabel>
         <Select
@@ -259,6 +246,7 @@ const PantallaTerminales = () => {
             ))}
         </Select>
       </FormControl>
+
       <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel>Función</InputLabel>
         <Select
@@ -278,6 +266,7 @@ const PantallaTerminales = () => {
           ))}
         </Select>
       </FormControl>
+
       <FormControl sx={{ m: 1, minWidth: 240 }}>
         <InputLabel>VisualTime</InputLabel>
         <Select
@@ -294,6 +283,7 @@ const PantallaTerminales = () => {
           <MenuItem value="no">Los que NO se envían</MenuItem>
         </Select>
       </FormControl>
+
     </Box>
   );
 
@@ -363,4 +353,10 @@ const PantallaTerminales = () => {
   );
 };
 
-export default PantallaTerminales;
+TableRowTerminal.propTypes = {
+  id: PropTypes.number,
+  centro: PropTypes.string,
+  nombre: PropTypes.string,
+  funciones: PropTypes.array,
+  idVisualTime: PropTypes.number,
+}

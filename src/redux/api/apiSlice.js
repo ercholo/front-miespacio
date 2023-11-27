@@ -11,5 +11,3 @@ export const apiSlice = createSlice({
 
 	}
 });
-
-export default apiSlice.reducer;

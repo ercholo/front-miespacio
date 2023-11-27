@@ -101,5 +101,3 @@ export const noticiasSlice = createSlice({
 			});
 	},
 });
-
-export default noticiasSlice.reducer;

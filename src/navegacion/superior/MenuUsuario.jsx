@@ -1,22 +1,15 @@
-import React from 'react';
 import { useNavigate } from 'react-router';
 
 // MUI
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import PropTypes from 'prop-types';
+
+import { IconButton, MenuItem, Menu, ListItemIcon } from '@mui/material/';
 
 // ICONOS
-//import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-
-
-
-
-export default function MenuUsuario({ elementoAncla, abierto, fnCerrarMenuUsuario, fnAbrirMenuUsuario }) {
+export const MenuUsuario = ({ elementoAncla, abierto, fnCerrarMenuUsuario, fnAbrirMenuUsuario }) => {
 
 	const navigate = useNavigate();
 
@@ -25,33 +18,38 @@ export default function MenuUsuario({ elementoAncla, abierto, fnCerrarMenuUsuari
 		navigate('/logout');
 	}
 
-	return <div>
-		<IconButton onClick={fnAbrirMenuUsuario} color="inherit" >
-			<AccountCircleIcon />
-		</IconButton>
-		<Menu
-			anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
-			transformOrigin={{ vertical: 'top', horizontal: 'right', }}
-			keepMounted
-			open={abierto}
-			anchorEl={elementoAncla}
-			onClose={fnCerrarMenuUsuario}
-		>
-			{/*<MenuItem component={Link} to='/usuario' onClick={fnCerrarMenuUsuario} >
-				<ListItemIcon>
-					<AccountBoxRoundedIcon fontSize="small" />
-				</ListItemIcon>
-				Usuario
-			</MenuItem>*/}
+	return (
+		<div>
+			<IconButton
+				onClick={fnAbrirMenuUsuario}
+				color="inherit"
+			>
+				<AccountCircleIcon />
+			</IconButton>
 
-			<MenuItem onClick={fnRealizarLogout}>
-				<ListItemIcon>
-					<ExitToAppRoundedIcon fontSize="small" />
-				</ListItemIcon>
-				Cerrar sesión
-			</MenuItem>
+			<Menu
+				anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
+				transformOrigin={{ vertical: 'top', horizontal: 'right', }}
+				keepMounted
+				open={abierto}
+				anchorEl={elementoAncla}
+				onClose={fnCerrarMenuUsuario}
+			>
+				<MenuItem onClick={fnRealizarLogout}>
+					<ListItemIcon>
+						<ExitToAppRoundedIcon fontSize="small" />
+					</ListItemIcon>
+					Cerrar sesión
+				</MenuItem>
 
-		</Menu>
-
-	</div>
+			</Menu>
+		</div>
+	)
 }
+
+MenuUsuario.propTypes = {
+	elementoAncla: PropTypes.object,
+	abierto: PropTypes.bool,
+	fnCerrarMenuUsuario: PropTypes.func,
+	fnAbrirMenuUsuario: PropTypes.func,
+};

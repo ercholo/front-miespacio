@@ -61,7 +61,7 @@ export const anticiposSlice = createSlice({
 		}
 	},
 	reducers: {
-		limpiarEstadoCreacionAnticipo: (state, action) => {
+		limpiarEstadoCreacionAnticipo: (state) => {
 			state.solicitudAnticipo.resultado = null;
 			state.solicitudAnticipo.estado = 'inicial';
 			state.solicitudAnticipo.error = null;
@@ -120,4 +120,3 @@ export const anticiposSlice = createSlice({
 
 
 export const { limpiarEstadoCreacionAnticipo } = anticiposSlice.actions;
-export default anticiposSlice.reducer;

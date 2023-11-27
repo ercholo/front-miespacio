@@ -23,7 +23,7 @@ export const valesSlice = createSlice({
 		error: null
 	},
 	reducers: {
-		limpiarEstadoConsulta: (state, _) => {
+		limpiarEstadoConsulta: (state) => {
 			state.estado = 'inicial';
 			state.resultado = null;
 			state.error = null;
@@ -49,7 +49,4 @@ export const valesSlice = createSlice({
 	},
 });
 
-
-
 export const { limpiarEstadoConsulta } = valesSlice.actions;
-export default valesSlice.reducer;

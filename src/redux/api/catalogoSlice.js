@@ -15,10 +15,7 @@ export const actualizarCatalogo = createAsyncThunk('catalogo/actualizarCatalogo'
 	}
 );
 
-
-
-
-export const apiSlice = createSlice({
+export const catalogoSlice = createSlice({
 	name: 'catalogo',
 	initialState: {
 		estado: 'inicial',
@@ -66,5 +63,4 @@ export const apiSlice = createSlice({
 
 
 
-export const { setLimite, setPagina, setPatronBusqueda, setMaterialSeleccionado } = apiSlice.actions;
-export default apiSlice.reducer;
+export const { setLimite, setPagina, setPatronBusqueda, setMaterialSeleccionado } = catalogoSlice.actions;

@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import SAP from '../../api/sap';
 
-
-
 export const descargarAlbaranPdf = createAsyncThunk('albaranPdf/descargarPdf',
 	async ({ numeroAlbaran, modoVisualizacion }, redux) => {
 
@@ -13,9 +11,9 @@ export const descargarAlbaranPdf = createAsyncThunk('albaranPdf/descargarPdf',
 			let mensaje = SAP.generarErrorFetch(error);
 			return redux.rejectWithValue({ error: mensaje, numeroAlbaran, modoVisualizacion });
 		}
+		
 	}
 );
-
 
 export const descargaAlbaranPdfSlice = createSlice({
 	name: 'albaranPdf',
@@ -70,7 +68,4 @@ export const descargaAlbaranPdfSlice = createSlice({
 	},
 });
 
-
-
 export const { preparaDescargaAlbaranPdf, completarDescargaAlbaranPdf, descartarErroresAlbaranPdf } = descargaAlbaranPdfSlice.actions;
-export default descargaAlbaranPdfSlice.reducer;

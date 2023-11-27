@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // TEMA
@@ -51,8 +51,8 @@ const RutasNoAutenticadas = () => {
 };
 
 const BarrasNavegacion = ({ autenticado }) => {
-    const [drawerAbierto, setDrawerAbierto] = React.useState(false);
-    const fnMostrarDrawerLateral = React.useCallback(
+    const [drawerAbierto, setDrawerAbierto] = useState(false);
+    const fnMostrarDrawerLateral = useCallback(
         (flag) => {
             if (flag === undefined) setDrawerAbierto(!drawerAbierto);
             else setDrawerAbierto(flag ? true : false);
