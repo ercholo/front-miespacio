@@ -17,6 +17,4 @@ FEDICOM.generarErrorFetch = (error) => {
 		return [{ codigo: 'NET-002', descripcion: `No se pudo alcanzar el servidor: ${error}` }]
 }
 
-
-
 export default FEDICOM;

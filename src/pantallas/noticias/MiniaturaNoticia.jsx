@@ -1,4 +1,5 @@
 import {useState, useRef, useCallback, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 
@@ -14,7 +15,7 @@ import API from "../../api/api";
 import MsRestError from "@hefame/microservice-rest-error";
 import useOnScreen from "../../hooks/useOnScreen";
 
-const MiniaturaNoticia = ({ noticia }) => {
+export const MiniaturaNoticia = ({ noticia }) => {
     const redux = useStore();
 
     const visibleRef = useRef();
@@ -188,4 +189,9 @@ const MiniaturaNoticia = ({ noticia }) => {
     );
 };
 
-export default MiniaturaNoticia;
+MiniaturaNoticia.propTypes = {
+    noticia: PropTypes.object 
+}
+MiniaturaNoticia.defaultProps  = {
+    noticia: PropTypes.undefined 
+}

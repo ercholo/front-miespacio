@@ -28,7 +28,8 @@ export const del = async (redux, abortController, idNoticia) => {
 
 const noticias_idNoticia = {
     get,
-    put, del
+    put, 
+    del
 };
 
 export default noticias_idNoticia;

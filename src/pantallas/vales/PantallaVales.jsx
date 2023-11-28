@@ -1,6 +1,6 @@
 
 import { useAutorizacion } from "../../hooks/useAutorizacion";
-import BoxErrorAutorizacion from "../BoxErrorAutorizacion";
+import { BoxErrorAutorizacion } from "../BoxErrorAutorizacion";
 import { Routes, Route } from "react-router-dom";
 import PantallaCarrito from "./PantallaCarrito";
 import PantallaCatalogo from "./PantallaCatalogo";

@@ -6,16 +6,10 @@ import { redux_usuario_inicializar, redux_usuario_select_EstadoInicializacion } 
 import { BoxErrorApi } from "../navegacion/BoxErrorApi";
 import { BoxCargando } from "../navegacion/BoxCargando";
 
-
-
-
 export default function PantallaLogin() {
-
 
 	const dispatch = useDispatch();
 	const estadoLogin = useSelector(redux_usuario_select_EstadoInicializacion);
-
-
 
 	const [cookies] = useCookies(['empleado_sessid']);
 
@@ -34,9 +28,13 @@ export default function PantallaLogin() {
 		}
 	}, [dispatch, estadoLogin, cookies.empleado_sessid])
 
-	if (estadoLogin.estado ==='error' && estadoLogin.error) {
+	if (estadoLogin.estado === 'error' && estadoLogin.error) {
 
-		return <BoxErrorApi msError={estadoLogin.error} titulo="Ocurrió un error durante el login" />
+		return (
+			<BoxErrorApi msError={estadoLogin.error} titulo="Ocurrió un error durante el login" />
+		)
 	}
-	return <BoxCargando titulo="Estás siendo redirigido a SuccessFactors para identificarte"/>;
+	return (
+		<BoxCargando titulo="Estás siendo redirigido a SuccessFactors para identificarte" />
+	)
 }

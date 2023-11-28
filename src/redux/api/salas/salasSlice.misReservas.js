@@ -79,7 +79,8 @@ export const selectMisReservasSalas = createSelector([_selectMisReservasSalas], 
 })
 
 
-export default function build(builder) {
+export const misReservasReducer = (builder) => 
+{
 	builder
 		.addCase(consultarMisReservas.pending, (state) => {
 			state.misReservas.resultado = null;

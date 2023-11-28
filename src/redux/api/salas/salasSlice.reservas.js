@@ -33,7 +33,7 @@ export const selectReservas = createSelector([selectMaestroReservas], (reservas)
 	}
 })
 
-export default function build(builder) {
+export const reservasReducer = (builder) => {
 	builder
 		.addCase(consultarReservasSala.pending, (state) => {
 			state.reservas.resultado = null;

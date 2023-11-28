@@ -31,7 +31,7 @@ export const selectZonaSeleccionada = createSelector([selectCodigoZonaSelecciona
 	return zonas.resultado?.find(z => z.codigo === codigoZonaSeleccionada) || null;
 })
 
-export default function build(builder) {
+export const zonasReducer = (builder) => {
 	builder
 		.addCase(consultarZonas.pending, (state) => {
 			state.zonas.resultado = null;

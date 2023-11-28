@@ -15,8 +15,6 @@ export const consultarAccesos = createAsyncThunk('accesos/consultarAccesos',
 	}
 );
 
-
-
 export const accesosSlice = createSlice({
 	name: 'accesos',
 	initialState: {

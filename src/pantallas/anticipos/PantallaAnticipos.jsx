@@ -4,7 +4,7 @@ import { Alert, AlertTitle, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import SAP from "../../api/sap";
 import {useAutorizacion} from "../../hooks/useAutorizacion";
-import BoxErrorAutorizacion from "../BoxErrorAutorizacion";
+import { BoxErrorAutorizacion } from "../BoxErrorAutorizacion";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { consultarAnticipos } from "../../redux/api/anticiposSlice";

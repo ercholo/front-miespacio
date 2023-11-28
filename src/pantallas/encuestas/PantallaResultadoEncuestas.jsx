@@ -1,18 +1,17 @@
-import { Button } from "@mui/material";
-import API from "../../api/api";
-import { BoxCargando } from "../../navegacion/BoxCargando";
-import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
 import React from "react";
 import { useStore } from "react-redux";
 import { useParams } from "react-router";
+import API from "../../api/api";
 import { useAutorizacion } from "../../hooks/useAutorizacion";
-import BoxErrorAutorizacion from "../../pantallas/BoxErrorAutorizacion";
+import { BoxCargando, BoxErrorApi } from "../../navegacion/";
+import { BoxErrorAutorizacion } from "../../pantallas/BoxErrorAutorizacion";
 import { CsvBuilder } from "filefy";
+import { Button } from "@mui/material";
 
-export default function PantallaResultadoEncuestas() {
+export const PantallaResultadoEncuestas = () => {
 	const autorizado = useAutorizacion({
 		funcionAsignada: [70091000],
-		codigoEmpleado: [92409705],
+		codigoEmpleado: [92409705, 90101151],
 	});
 
 	const redux = useStore();
@@ -84,7 +83,7 @@ export default function PantallaResultadoEncuestas() {
 	const exportar = () => {
 		new CsvBuilder("encuesta.csv")
 			.setColumns(columnas.map((c) => c.label))
-			.addRows(respuestas.map((row) => Object.values(row).map((v) => `${String(v).replaceAll(/[\r\n\"]+/gi, "")}`)))
+			.addRows(respuestas.map((row) => Object.values(row).map((v) => `${String(v).replaceAll(/[\r\n"]+/gi, "")}`)))
 			.exportFile();
 	};
 

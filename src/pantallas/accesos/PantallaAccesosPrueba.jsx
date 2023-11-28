@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SAP from '../../api/sap';
 import { consultarAccesos } from '../../redux/api/accesosSlice';
 
-import { Alert, AlertTitle, Box, CircularProgress, TextField, Typography } from "@mui/material";
+import { Alert, AlertTitle, Box, CircularProgress, Typography } from "@mui/material";
 
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineOppositeContent, TimelineDot } from '@mui/lab/';
 
@@ -58,30 +58,33 @@ export const PantallaAccesosPrueba = () => {
 
 		})
 		return f.map((e, i) => {
-			return <>
-				<TimelineItem key={i}>
-					<TimelineOppositeContent sx={{ py: 2 }}>
-						{e.direccion === "entrada" && 'Entrada a trabajar'}
-						{e.direccion === "salida" && e.motivo === 3 && 'Descanso'}
-						{e.direccion === "salida" && e.motivo === 5 && 'Tranajo exterior'}
-						{e.direccion === "salida" && e.motivo === null && 'Salida'}
-						<Typography variant="body2">
-							{formatDuration({ hours: Math.floor(e.transcurrido / 60), minutes: e.transcurrido % 60 }, { locale: es })}
-						</Typography>
-					</TimelineOppositeContent>
-					<TimelineSeparator>
-						{e.direccion === "entrada" && <TimelineDot color="primary"><WarehouseIcon /></TimelineDot>}
-						{e.direccion === "salida" && e.motivo === 3 && <TimelineDot color="secondary"><FastfoodIcon /></TimelineDot>}
-						{e.direccion === "salida" && e.motivo === 5 && <TimelineDot color="error"><HardwareIcon /></TimelineDot>}
-						{e.direccion === "salida" && e.motivo === null && <TimelineDot color="info"><LogoutIcon /></TimelineDot>}
-						{i < f.length - 1 && <TimelineConnector />}
-					</TimelineSeparator>
-					<TimelineContent color="text.secondary" sx={{ py: 2 }}>
-						{format(e.hora, 'HH:mm')}
-					</TimelineContent>
-				</TimelineItem>
+			return (
+				<div key={i}>
+					
+					<TimelineItem >
+						<TimelineOppositeContent sx={{ py: 2 }}>
+							{e.direccion === "entrada" && 'Entrada a trabajar'}
+							{e.direccion === "salida" && e.motivo === 3 && 'Descanso'}
+							{e.direccion === "salida" && e.motivo === 5 && 'Tranajo exterior'}
+							{e.direccion === "salida" && e.motivo === null && 'Salida'}
+							<Typography variant="body2">
+								{formatDuration({ hours: Math.floor(e.transcurrido / 60), minutes: e.transcurrido % 60 }, { locale: es })}
+							</Typography>
+						</TimelineOppositeContent>
+						<TimelineSeparator>
+							{e.direccion === "entrada" && <TimelineDot color="primary"><WarehouseIcon /></TimelineDot>}
+							{e.direccion === "salida" && e.motivo === 3 && <TimelineDot color="secondary"><FastfoodIcon /></TimelineDot>}
+							{e.direccion === "salida" && e.motivo === 5 && <TimelineDot color="error"><HardwareIcon /></TimelineDot>}
+							{e.direccion === "salida" && e.motivo === null && <TimelineDot color="info"><LogoutIcon /></TimelineDot>}
+							{i < f.length - 1 && <TimelineConnector />}
+						</TimelineSeparator>
+						<TimelineContent color="text.secondary" sx={{ py: 2 }}>
+							{format(e.hora, 'HH:mm')}
+						</TimelineContent>
+					</TimelineItem>
 
-			</>
+				</div>
+			)
 		});
 
 	}, [accesos])
@@ -116,26 +119,23 @@ export const PantallaAccesosPrueba = () => {
 			<Box sx={{ mb: 4, mt: 3, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexDirection: 'row' }}>
 				<LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={es}>
 					<DatePicker
-
 						disableFuture
 						value={fecha}
 						onChange={setFecha}
 						disableMaskedInput
 						inputFormat="dd 'de' MMMM 'de' yyyy"
-						renderInput={(params) =>
-							<TextField
-								{...params}
-								onKeyDown={e => { e.preventDefault(); return false }}
-							/>
-						}
+						slotProps={{
+							textField: {
+								onBeforeInput: (e) => {
+									e.preventDefault();
+									return false;
+								},
+							}
+						}}
 					/>
 				</LocalizationProvider>
 			</Box>
 		</Box>
-
 		{contenido}
-
 	</>
-
-
 }

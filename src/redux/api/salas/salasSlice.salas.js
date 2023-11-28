@@ -32,7 +32,7 @@ export const selectSalaSeleccionada = createSelector([selectCodigoSalaSelecciona
 	return salas.resultado?.find(z => z.codigo === codigoSalaSeleccionada) || null;
 })
 
-export default function build(builder) {
+export const salasReducer = (builder) => {
 	builder
 		.addCase(consultarSalas.pending, (state) => {
 			state.salas.resultado = null;

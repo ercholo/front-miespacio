@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import misReservasReducer from "./salasSlice.misReservas";
-import zonasReducer from "./salasSlice.zonas";
-import salasReducer from "./salasSlice.salas";
-import reservasReducer from "./salasSlice.reservas";
+import { misReservasReducer } from "./salasSlice.misReservas";
+import { zonasReducer } from "./salasSlice.zonas";
+import { salasReducer } from "./salasSlice.salas";
+import { reservasReducer } from "./salasSlice.reservas";
 
 export const salasSlice = createSlice({
 	name: 'salas',
@@ -49,5 +49,3 @@ export const salasSlice = createSlice({
 		reservasReducer(builder);
 	},
 });
-
-export default salasSlice.reducer;

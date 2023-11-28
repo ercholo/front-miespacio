@@ -8,13 +8,13 @@ import PantallaAnticipos from './anticipos/PantallaAnticipos';
 import PantallaGestiones from './gestiones/PantallaGestiones';
 import PantallaNomina from './nomina/PantallaNomina';
 import PantallaEncuestas from './encuestas/PantallaEncuestas';
-import PantallaResultadoEncuestas from './encuestas/PantallaResultadoEncuestas';
+import { PantallaResultadoEncuestas } from './encuestas/PantallaResultadoEncuestas';
 import PantallaTickets from './tickets/PantallaTickets';
 import PantallaVales from './vales/PantallaVales';
 import PantallaIrpf from './irpf/PantallaIrpf';
 import RouterNoticias from './noticias/RouterNoticias';
 
-import { PantallaTerminales} from './_admin/terminales/PantallaTerminales';
+import { PantallaTerminales } from './_admin/terminales/PantallaTerminales';
 
 const Pantallas = {
 	Principal: PantallaPrincipal,

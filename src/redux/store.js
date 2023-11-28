@@ -4,15 +4,9 @@ import { pantallaSlice } from './pantallaSlice';
 import { usuarioSlice } from './usuario/usuarioSlice';
 import { gestionViajesSlice } from './gestion/viajesSlice';
 
-import { apiSlice } from './api/apiSlice';
-import { anticiposSlice } from './api/anticiposSlice';
-import { catalogoSlice } from './api/catalogoSlice';
-import { carritoSlice } from './api/carritoSlice';
-import { valesSlice } from './api/valesSlice';
-import { descargaAlbaranPdfSlice } from './api/albaranPdfSlice';
-import { accesosSlice } from './api/accesosSlice';
+import { apiSlice, anticiposSlice, catalogoSlice, carritoSlice, valesSlice, descargaAlbaranPdfSlice, accesosSlice } from './api/';
 import { ticketsSlice } from './tickets/ticketsSlice';
-import salasReducer from './api/salas/salasSlice';
+import { salasSlice } from './api/salas/salasSlice';
 import { noticiasGestionSlice } from './api/noticiasGestion/noticiasGestionSlice';
 import { noticiasSlice } from './api/noticias/noticiasSlice';
 import { maestroAsignacionesSlice } from './api/maestroAsignaciones/maestroAsignacionesSlice';
@@ -49,7 +43,7 @@ export const store = configureStore({
 		accesos: accesosSlice.reducer,
 		tickets: ticketsSlice.reducer,
 		anticipos: anticiposSlice.reducer,
-		salas: salasReducer,
+		salas: salasSlice.reducer,
 		noticiasGestion: noticiasGestionSlice.reducer,
 		noticias: noticiasSlice.reducer,
 		maestroAsignaciones: maestroAsignacionesSlice.reducer,

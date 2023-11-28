@@ -1,5 +1,6 @@
 import { useCallback, useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 // TEMA
 import "./App.css";
@@ -51,6 +52,7 @@ const RutasNoAutenticadas = () => {
 };
 
 const BarrasNavegacion = ({ autenticado }) => {
+
     const [drawerAbierto, setDrawerAbierto] = useState(false);
     const fnMostrarDrawerLateral = useCallback(
         (flag) => {
@@ -99,3 +101,7 @@ function App() {
 }
 
 export default App;
+
+App.propTypes = {
+    autenticado: PropTypes.bool 
+}

@@ -6,7 +6,7 @@ import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { redux_noticias_feedNext } from '../../redux/api/noticias/noticiasSlice';
 
-import MiniaturaNoticia from './MiniaturaNoticia';
+import { MiniaturaNoticia } from './MiniaturaNoticia';
 import './quill.css'
 
 
