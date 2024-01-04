@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import API from '../../api/api';
+import { API } from '../../api/api';
 import { createCustomSelector } from '../../redux/createCustomSelector';
 
 const SLICE_NAME = 'tickets'

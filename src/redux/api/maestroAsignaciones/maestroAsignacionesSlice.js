@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import API from '../../../api/api';
+import { API } from '../../../api/api';
 
 
 export const consultaMaestroAsignaciones = createAsyncThunk('maestroAsignaciones/consulta',
 	async (_, redux) => {
 		try {
 			let respuesta = await API(redux).asignaciones.get();
-			console.log(respuesta)
 			return redux.fulfillWithValue(respuesta);
 		} catch (error) {
 			return redux.rejectWithValue(error);
@@ -23,7 +22,6 @@ export const maestroAsignacionesSlice = createSlice({
 		error: null
 	},
 	extraReducers: (builder) => {
-		console.log(builder)
 		builder
 			.addCase(consultaMaestroAsignaciones.pending, (state) => {
 				state.resultado = null;

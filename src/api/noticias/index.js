@@ -1,4 +1,4 @@
-import API from "../api";
+import { API } from "../api";
 import endpointsIdNoticia from "./idNoticia"
 
 export const get = async (redux, abortController, queryParams = {}) => {
@@ -27,11 +27,9 @@ export const post = async (redux, abortController, noticia) => {
 }
 
 
-const noticias = {
+export const noticias = {
     get,
     post,
     idNoticia: endpointsIdNoticia
 };
-
-export default noticias;
 

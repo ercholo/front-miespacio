@@ -1,4 +1,4 @@
-import API from "../api";
+import { API } from "../api";
 import endpointsIdAsignacion from "./idAsignacion"
 
 export const get = async (redux, abortController) => {
@@ -10,9 +10,7 @@ export const get = async (redux, abortController) => {
 }
 
 
-const asignaciones = {
+export const asignaciones = {
     get,
     idAsignacion: endpointsIdAsignacion
 };
-
-export default asignaciones;

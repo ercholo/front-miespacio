@@ -4,35 +4,41 @@ import { jwtDecode } from "jwt-decode";
 import { createCustomSelector } from '../../redux/createCustomSelector';
 import MsRestError from '@hefame/microservice-rest-error';
 
+
+//La nomenclatura del primer argumento createAsyncThunk es "nombre del slice/nombre del thunk".
 export const redux_usuario_inicializar = createAsyncThunk('usuario/redux_usuario_inicializar',
 	async (payload, redux) => {
 
+		//Si no hay token pues pijos
 		const { token } = payload;
 		if (!token) {
 			const msError = new MsRestError('NO_TOKEN', 'No se encontró el token', 'redux_usuario_inicializar')
 			return redux.rejectWithValue({ error: msError.toJSON(), needLogin: true });
 		}
 
+		//Aquí se obtienen los datos del token para su posterior return 
 		const tokenData = jwtDecode (token);
 		if (!tokenData.exp) {
 			const msError = new MsRestError('INVALID_TOKEN', 'El token no contiene los campos requeridos', 'redux_usuario_inicializar')
 			return redux.rejectWithValue({ error: msError.toJSON(), needLogin: true });
 		}
 
-		const tokenTTL = tokenData.exp - ((new Date()).getTime() / 1000);
+		//tokenTTL son los segundos qu te quedan para que caduque el token
+		const tokenTTL = tokenData.exp - ((new Date()).getTime() / 1000);		
 		if (tokenTTL < 0) {
 			const msError = new MsRestError('EXPIRED_TOKEN', 'El token está caducado', 'redux_usuario_inicializar')
 			return redux.rejectWithValue({ error: msError.toJSON(), needLogin: true });
 		}
 
 		console.log(`Se establece logout dentro de ${parseInt(tokenTTL)} segundos`)
+
+		//esta es la cuenta atrás del token para hacer logout
 		const timeoutLogout = setTimeout(() => {
-			console.log('Realizando logout...')
+			console.log('Realizando logout...');
 			window.location.href = '/logout';
 		}, Math.min(parseInt(tokenTTL * 1000), 2_147_483_000)) // El MAX timeout posible es de 2.147.483 segundos
 
-
-
+		//Devuelve los datos extraidos del token
 		return redux.fulfillWithValue({
 			name_id: tokenData.name_id,
 			session_index: tokenData.session_index,
@@ -51,14 +57,20 @@ export const redux_usuario_inicializar = createAsyncThunk('usuario/redux_usuario
 
 	}
 );
+
 redux_usuario_inicializar.extraReducers = (builder) => {
+
+	//Cuando realiza la acción de inicializar al usuario y comienza la acción asíncrona el estado pasa a 'cargando'.
 	const asyncFoo = 'inicializar';
 	builder.addCase(redux_usuario_inicializar.pending, (state) => {
 		state.async[asyncFoo].estado = 'cargando';
 		state.async[asyncFoo].error = null;
 	});
+
+	//Aquí la promesa ya ha sido terminada, se hacen las asignaciones y se cambia el estado a 'completado'
 	builder.addCase(redux_usuario_inicializar.fulfilled, (state, action) => {
 		const { name_id, session_index, nombre, apellidos, email, uid, tokenSap, tokenApi, pedidosSap, asignaciones, timeout } = action.payload;
+		console.log(action.payload)
 		state.sso.name_id = name_id;
 		state.sso.session_index = session_index;
 		state.codigoEmpleado = parseInt(uid);

@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router";
 
 import { Alert, AlertTitle, Badge, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent, FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, Link, Paper, TextField, Typography, useMediaQuery } from "@mui/material";
@@ -24,9 +25,9 @@ import { redux_usuario_select_InfoPedidos } from "../../redux/usuario/usuarioSli
 const LineaArticulo = ({ codigo, nombre, stock, precio, imagen }) => {
 
 	const dispatch = useDispatch();
-	const fnSeleccionarMaterial = React.useCallback(() => { dispatch(setMaterialSeleccionado(codigo)) }, [dispatch, codigo]);
-	const [elevacion, setElevacion] = React.useState(1);
-	const [sinImagen, setSinImagen] = React.useState(false);
+	const fnSeleccionarMaterial = useCallback(() => { dispatch(setMaterialSeleccionado(codigo)) }, [dispatch, codigo]);
+	const [elevacion, setElevacion] = useState(1);
+	const [sinImagen, setSinImagen] = useState(false);
 
 
 	return <Grid item xs={12} lg={6} >
@@ -64,26 +65,26 @@ const DialogoDetalleArticulo = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [mostrarOk, setMostrarOk] = React.useState(0);
-	const refTimeout = React.useRef(null);
-	const refCantidad = React.useRef(1);
+	const [mostrarOk, setMostrarOk] = useState(0);
+	const refTimeout = useRef(null);
+	const refCantidad = useRef(1);
 	const materialSeleccionado = useSelector(state => state.catalogo.materialSeleccionado);
 	const { codigoAlmacen } = useSelector(redux_usuario_select_InfoPedidos);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		setMostrarOk(0);
 		setErrorImagen(false);
 		if (refTimeout.current) clearTimeout(refTimeout.current);
 		refTimeout.current = null;
 	}, [materialSeleccionado])
-	const fnDeseleccionarMaterial = React.useCallback(() => {
+	const fnDeseleccionarMaterial = useCallback(() => {
 		dispatch(setMaterialSeleccionado(null))
 	}, [dispatch])
-	const fnVerCarrito = React.useCallback(() => {
+	const fnVerCarrito = useCallback(() => {
 		navigate('/vales/carrito');
 		fnDeseleccionarMaterial();
 	}, [navigate, fnDeseleccionarMaterial]);
-	const fnAnadirCarrito = React.useCallback(() => {
+	const fnAnadirCarrito = useCallback(() => {
 		dispatch(addMaterialEnCarrito({ cantidad: Math.max(+refCantidad.current.value, 1), ...materialSeleccionado }))
 		dispatch(marcarCreacionPedidoVisualizada());
 		setMostrarOk(Math.max(+refCantidad.current.value, 1));
@@ -93,7 +94,7 @@ const DialogoDetalleArticulo = () => {
 			refTimeout.current = null;
 		}, 2500)
 	}, [dispatch, materialSeleccionado, setMostrarOk])
-	const fnEliminarCarrito = React.useCallback(() => {
+	const fnEliminarCarrito = useCallback(() => {
 		dispatch(setMaterialEnCarrito({ ...materialSeleccionado }))
 		setMostrarOk(-1);
 		if (refTimeout.current) clearTimeout(refTimeout.current);
@@ -103,7 +104,7 @@ const DialogoDetalleArticulo = () => {
 		}, 2500)
 	}, [dispatch, materialSeleccionado, setMostrarOk])
 	const contenidoCarrito = useSelector(state => state.carrito.materiales);
-	const memoCantidadActual = React.useMemo(() => {
+	const memoCantidadActual = useMemo(() => {
 		if (!materialSeleccionado?.codigo) return 0;
 		let material = contenidoCarrito.find(m => m.codigo === materialSeleccionado.codigo);
 		if (material) return material.cantidad;
@@ -128,7 +129,7 @@ const DialogoDetalleArticulo = () => {
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-	const [errorImagen, setErrorImagen] = React.useState(false)
+	const [errorImagen, setErrorImagen] = useState(false)
 
 	let descripcion = (materialSeleccionado?.descripcion.startsWith('"') && materialSeleccionado?.descripcion.endsWith('"')) ?
 		materialSeleccionado?.descripcion.substr(1, materialSeleccionado.descripcion.length - 2).trim()
@@ -275,22 +276,22 @@ const DialogoDetalleArticulo = () => {
 	</Dialog >
 }
 
-export default function PantallaCatalogo() {
+export const PantallaCatalogo = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	let fnVerCarrito = React.useCallback(() => navigate('/vales/carrito'), [navigate]);
-	let refPatronBusqueda = React.useRef();
-	let fnEstablecerPatronBusqueda = React.useCallback(() => dispatch(setPatronBusqueda(refPatronBusqueda.current.value)), [dispatch]);
-	let fnActualizaCatalogo = React.useCallback(() => dispatch(actualizarCatalogo()), [dispatch]);
-	let fnTeclaFiltroPulsada = React.useCallback((e) => e.keyCode === 13 && fnActualizaCatalogo(), [fnActualizaCatalogo])
+	let fnVerCarrito = useCallback(() => navigate('/vales/carrito'), [navigate]);
+	let refPatronBusqueda = useRef();
+	let fnEstablecerPatronBusqueda = useCallback(() => dispatch(setPatronBusqueda(refPatronBusqueda.current.value)), [dispatch]);
+	let fnActualizaCatalogo = useCallback(() => dispatch(actualizarCatalogo()), [dispatch]);
+	let fnTeclaFiltroPulsada = useCallback((e) => e.keyCode === 13 && fnActualizaCatalogo(), [fnActualizaCatalogo])
 
 	const estadoCatalogo = useSelector(state => state.catalogo.estado);
 	const materiales = useSelector(state => state.catalogo.materiales);
 	const error = useSelector(state => state.catalogo.error);
 
-	const materialesOrdenados = React.useMemo(() => {
+	const materialesOrdenados = useMemo(() => {
 		return [...materiales].sort((a, b) => {
 			if (!a.stock && !b.stock) return 0;
 			if (!a.stock) return 1;
@@ -373,6 +374,4 @@ export default function PantallaCatalogo() {
 
 		</>
 	)
-
-
 }

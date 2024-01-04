@@ -4,7 +4,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select, Table, TableBody, Table
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
 import { BoxCargando, BoxErrorApi } from "../../../navegacion/";
 import { useStore } from "react-redux";
-import API from "../../../api/api";
+import { API } from "../../../api/api";
 import { BoxErrorAutorizacion } from "../../../pantallas/BoxErrorAutorizacion";
 import { useAutorizacion } from "../../../hooks/useAutorizacion";
 import { useSnackbar } from "notistack";

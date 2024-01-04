@@ -1,5 +1,4 @@
 import { Box, Grid, List, ListItemButton, ListItemIcon, ListItemText, Paper, Typography } from "@mui/material";
-import React from "react";
 import SavingsIcon from "@mui/icons-material/Savings";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -10,12 +9,14 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import { useAutorizacion } from "../../hooks/useAutorizacion";
 import { useNavigate } from "react-router";
 
-export default function PanelAccesosRapidos() {
+export const PanelAccesosRapidos = () => {
+
     const navigate = useNavigate();
     const autorizacionConvenio = useAutorizacion({ areaPersonal: ["HF"] });
 
     return (
         <Paper elevation={3}>
+
             <Box sx={{ background: (t) => t.palette.grey[100], my: 0, py: 1.2, pl: 3 }}>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box sx={{ mr: 2, display: "flex" }}>
@@ -26,7 +27,9 @@ export default function PanelAccesosRapidos() {
                     </Box>
                 </Box>
             </Box>
+
             <Box sx={{ my: 0, py: 0, px: 2, mb: 1 }}>
+
                 <Grid container sx={{ px: 0, mb: 4, py: 1 }}>
                     <Grid item md={autorizacionConvenio ? 4 : 6}>
                         <List sx={{ width: "100%", p: 0 }} component="nav">
@@ -61,7 +64,9 @@ export default function PanelAccesosRapidos() {
                             </ListItemButton>
                         </List>
                     </Grid>
+
                     {autorizacionConvenio && (
+                        
                         <Grid item md={4}>
                             <List sx={{ width: "100%", p: 0 }} component="nav">
                                 <ListItemButton onClick={() => navigate("/vales/catalogo")}>
@@ -78,6 +83,7 @@ export default function PanelAccesosRapidos() {
                                 </ListItemButton>
                             </List>
                         </Grid>
+
                     )}
                 </Grid>
             </Box>

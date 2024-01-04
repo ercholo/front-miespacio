@@ -287,9 +287,17 @@ export default function PantallaTickets() {
                             label="Buscar por fecha"
                             value={filtroFecha}
                             onChange={(newValue) => setFiltroFecha(newValue)}
-                            renderInput={(params) => <TextField {...params} />}
+                            // renderInput={(params) => <TextField {...params} />}
                             closeOnSelect={false}
                             disableFuture
+                            slotProps={{
+								textField: {
+									onBeforeInput: (e) => {
+										e.preventDefault();
+										return false;
+									},
+								}
+							}}
                         />
                     </LocalizationProvider>
                 </Box>

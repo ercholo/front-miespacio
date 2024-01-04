@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import API from '../../../api/api';
+import { API } from '../../../api/api';
 
 
 export const redux_noticias_estableceFiltroFeed = createAsyncThunk('noticias/estableceFiltroFeed',
@@ -22,7 +22,6 @@ export const redux_noticias_feedNext = createAsyncThunk('noticias/feedNext',
 
 			
 			let respuesta = await API(redux).empleados.noticias.get({from: ultimaFecha, limit: 5, formato: 'minimo'});
-			console.log(respuesta)
 			return redux.fulfillWithValue(respuesta);
 		} catch (error) {
 			console.log('noticias/feedNext: API ERROR: ', error);

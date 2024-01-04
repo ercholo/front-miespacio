@@ -1,7 +1,10 @@
 import MsRestError from "@hefame/microservice-rest-error";
-import API from "../api";
+import { API } from "../api";
 
 export const get = async (redux, abortController, ano, mes) => {
+
+    console.log(abortController)
+
     const respuesta = await API.llamada(redux, abortController, 'get', `/empleados/nominas/${ano}/${mes}`);
 
     if (respuesta.status === 200) {

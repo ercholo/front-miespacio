@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "react-redux";
-import API from "../../../api/api";
+import { API } from "../../../api/api";
 
 import { Box, Paper, TextField, Typography } from "@mui/material";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";

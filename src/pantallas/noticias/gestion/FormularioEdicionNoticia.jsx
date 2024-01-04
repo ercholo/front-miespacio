@@ -1,31 +1,5 @@
-import {
-    Alert,
-    Autocomplete,
-    Button,
-    Checkbox,
-    CircularProgress,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
-    Typography,
-    FormGroup,
-    FormControlLabel,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import SendIcon from "@mui/icons-material/Send";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import es from "date-fns/locale/es";
-import React, { useEffect } from "react";
-
+import { useEffect, useCallback, useState } from "react";
+import PropTypes from 'prop-types';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./quill.css";
@@ -36,6 +10,19 @@ import { actualizaNoticiaEdicion } from "../../../redux/api/noticiasGestion/noti
 import { clearEditorNoticias } from "../../../redux/api/noticiasGestion/noticiasGestionSlice";
 import Resizer from "react-image-file-resizer";
 import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
+import es from "date-fns/locale/es";
+
+import {Alert, Autocomplete, Button, Checkbox, CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography, FormGroup, FormControlLabel } from "@mui/material";
+import { Box } from "@mui/system";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import SendIcon from "@mui/icons-material/Send";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
 
 const SELECTORES_AUDIENCIA = [
     "posicionAsignada",
@@ -78,6 +65,7 @@ const reductorImagen = (file) => {
 };
 
 const SelectorAudiencia = ({ maestro, seleccion, setSeleccion, disabled }) => {
+
     const opciones = maestro.valores.map((valor) => {
         return {
             label: `${valor.codigo} - ${valor.descripcion}`,
@@ -85,7 +73,7 @@ const SelectorAudiencia = ({ maestro, seleccion, setSeleccion, disabled }) => {
         };
     });
 
-    const [estadoInterno, _setEstadoInterno] = React.useState(
+    const [estadoInterno, _setEstadoInterno] = useState(
         seleccion?.map((e) => {
             return opciones.find((o) => o.id === e);
         }) || []
@@ -97,6 +85,7 @@ const SelectorAudiencia = ({ maestro, seleccion, setSeleccion, disabled }) => {
     };
 
     return (
+
         <FormControl sx={{ m: 1, width: "100%" }}>
             <Autocomplete
                 value={estadoInterno}
@@ -133,7 +122,7 @@ const SelectoresDeAudiencia = ({ value, setValue, disabled }) => {
     const estadoMaestroAudiencia = useSelector((state) => state.maestroAsignaciones.estado);
     const error = useSelector((state) => state.maestroAsignaciones.error);
 
-    const setAudiencia = React.useCallback(
+    const setAudiencia = useCallback(
         (tipoAsignacion, valorAsignacion) => {
             setValue((v) => {
                 return {
@@ -145,7 +134,7 @@ const SelectoresDeAudiencia = ({ value, setValue, disabled }) => {
         [setValue]
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (estadoMaestroAudiencia === "inicial") dispatch(consultaMaestroAsignaciones());
     }, [dispatch, estadoMaestroAudiencia]);
 
@@ -185,25 +174,26 @@ const SelectoresDeAudiencia = ({ value, setValue, disabled }) => {
     return contenido;
 };
 
-export default function FormularioEdicionNoticia({ noticia }) {
-    const [titulo, setTitulo] = React.useState(noticia.titulo);
-    const [categoria, setCategoria] = React.useState(noticia.categoria);
-    const [contenido, setContenido] = React.useState(noticia.contenido);
-    const [noticiaBasica, setNoticiaBasica] = React.useState(false);
+export const FormularioEdicionNoticia = ({ noticia }) => {
 
-    const [miniaturaModo, setMiniaturaModo] = React.useState(noticia.miniatura.modo || "normal");
-    const [miniaturaResumen, setMiniaturaResumen] = React.useState(noticia.miniatura.resumen);
-    const [miniaturaImagen, setMiniaturaImagen] = React.useState(noticia.miniatura.imagen);
+    const [titulo, setTitulo] = useState(noticia.titulo);
+    const [categoria, setCategoria] = useState(noticia.categoria);
+    const [contenido, setContenido] = useState(noticia.contenido);
+    const [noticiaBasica, setNoticiaBasica] = useState(false);
 
-    const [estado, setEstado] = React.useState(noticia.estado);
-    const [fechaPublicacion, setFechaPublicacion] = React.useState(
+    const [miniaturaModo, setMiniaturaModo] = useState(noticia.miniatura.modo || "normal");
+    const [miniaturaResumen, setMiniaturaResumen] = useState(noticia.miniatura.resumen);
+    const [miniaturaImagen, setMiniaturaImagen] = useState(noticia.miniatura.imagen);
+
+    const [estado, setEstado] = useState(noticia.estado);
+    const [fechaPublicacion, setFechaPublicacion] = useState(
         noticia.fechaPublicacion ? new Date(noticia.fechaPublicacion) : new Date(noticia.fechaCreacion)
     );
-    const [fechaExpiracion, setFechaExpiracion] = React.useState(
+    const [fechaExpiracion, setFechaExpiracion] = useState(
         noticia.fechaExpiracion !== "2199-12-31T23:59:59.999Z" ? new Date(noticia.fechaExpiracion) : null
     );
 
-    const [audiencia, setAudiencia] = React.useState(noticia.audiencia);
+    const [audiencia, setAudiencia] = useState(noticia.audiencia);
 
     const dispatch = useDispatch();
     const estadoActualizacion = useSelector((state) => state.noticiasGestion.editor.edicion.estado);
@@ -211,7 +201,7 @@ export default function FormularioEdicionNoticia({ noticia }) {
     const resultadoActualizacion = useSelector((state) => state.noticiasGestion.editor.edicion.resultado);
 
     const actualizando = estadoActualizacion === "cargando";
-    const [mostrarMensajeOk, setMostrarMensajeOk] = React.useState(false);
+    const [mostrarMensajeOk, setMostrarMensajeOk] = useState(false);
 
     useEffect(() => {
         if (!resultadoActualizacion?.id) return;
@@ -223,7 +213,7 @@ export default function FormularioEdicionNoticia({ noticia }) {
         }, 5000);
     }, [dispatch, resultadoActualizacion]);
 
-    const actualizarNoticia = React.useCallback(() => {
+    const actualizarNoticia = useCallback(() => {
         let fPubZ = null;
         if (fechaPublicacion) {
             let fPubOffset = fechaPublicacion.getTimezoneOffset();
@@ -278,18 +268,19 @@ export default function FormularioEdicionNoticia({ noticia }) {
         audiencia,
     ]);
 
-    const seleccionarImagen = React.useCallback(async (e) => {
+    const seleccionarImagen = useCallback(async (e) => {
         const files = e.target.files;
         const file = files[0];
         const image = await reductorImagen(file);
         setMiniaturaImagen(image);
     }, []);
 
-    const eliminarImagenMiniatura = React.useCallback(() => {
+    const eliminarImagenMiniatura = useCallback(() => {
         setMiniaturaImagen(null);
     }, [setMiniaturaImagen]);
 
     return (
+
         <Box
             sx={{
                 display: "flex",
@@ -306,7 +297,7 @@ export default function FormularioEdicionNoticia({ noticia }) {
                     label="Título de la noticia"
                     defaultValue={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
-                    error={!Boolean(titulo)}
+                    error={!titulo}
                     sx={{ my: 2, width: "100%" }}
                 />
                 <TextField
@@ -317,10 +308,11 @@ export default function FormularioEdicionNoticia({ noticia }) {
                     size="small"
                     defaultValue={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
-                    error={!Boolean(categoria)}
+                    error={!categoria}
                     sx={{ mb: 4, width: "100%" }}
                 />
             </Box>
+
             <Typography
                 variant="h6"
                 sx={{
@@ -332,6 +324,7 @@ export default function FormularioEdicionNoticia({ noticia }) {
             >
                 Miniatura
             </Typography>
+
             <Grid container>
                 <Grid item md={4} sx={{ px: 2 }}>
                     <FormControl variant="outlined" sx={{ mr: 2, mb: 2, width: "100%" }}>
@@ -454,6 +447,7 @@ export default function FormularioEdicionNoticia({ noticia }) {
                     >
                         Contenido
                     </Typography>
+
                     <Box sx={{ width: "100%" }}>
                         <ReactQuill
                             readOnly={actualizando}
@@ -567,4 +561,15 @@ export default function FormularioEdicionNoticia({ noticia }) {
             {errorActualizacion && <BoxErrorApi msError={errorActualizacion} titulo="Ocurrió un error al actualizar la noticia" />}
         </Box>
     );
+}
+
+FormularioEdicionNoticia.propTypes = {
+    noticia: PropTypes.object 
+}
+
+SelectorAudiencia.propTypes = {
+    maestro: PropTypes.object, 
+    seleccion: PropTypes.object,
+    setSeleccion: PropTypes.func,
+    disabled: PropTypes.bool, 
 }

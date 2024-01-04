@@ -1,14 +1,15 @@
 import MsRestError from "@hefame/microservice-rest-error";
 import { redux_usuario_select_Tokens } from "../redux/usuario/usuarioSlice";
 
-import empleados from "./empleados";
-import noticias from "./noticias";
-import asignaciones from "./asignaciones";
-import vehiculos from "./vehiculos";
-import terminales from "./terminales";
-import encuestas from "./encuestas";
+import { empleados } from "./empleados";
+import { noticias } from "./noticias";
+import { asignaciones } from "./asignaciones";
+import { vehiculos } from "./vehiculos";
+import { terminales } from "./terminales";
+import { encuestas } from "./encuestas";
 
-const API = function (R, A) {
+export const API = function (R, A) {
+
 	return {
 		empleados: {
 			ticketsSoporte: {
@@ -85,6 +86,7 @@ API.llamada = async (redux, abortController, metodo, urlPath, body, cabeceras) =
 	let url = `https://empleado.hefame.es/rest/v1${urlPath}`;
 	let jwt = redux_usuario_select_Tokens.from(redux.getState()).api;
 
+
 	if (!cabeceras) cabeceras = {};
 	let opciones = {
 		method: metodo,
@@ -98,6 +100,8 @@ API.llamada = async (redux, abortController, metodo, urlPath, body, cabeceras) =
 	if (body) opciones.body = JSON.stringify(body);
 	if (jwt) opciones.headers["Authorization"] = "Bearer " + jwt;
 
+	console.log(opciones)
+
 	console.groupCollapsed(opciones.method.toUpperCase() + " " + url);
 	if (body) console.log(body);
 	console.groupEnd();
@@ -105,6 +109,9 @@ API.llamada = async (redux, abortController, metodo, urlPath, body, cabeceras) =
 	try {
 		return await fetch(url, opciones);
 	} catch (error) {
+		if (abortController.signal.aborted) {
+			console.error('Error:', error.message);
+		}
 		throw sanearTipoError(error).toJSON();
 	}
 };
@@ -115,4 +122,3 @@ const sanearTipoError = (error) => {
 	else return new MsRestError("NETWORK_ERROR", String(error), "API_CALL");
 };
 
-export default API;

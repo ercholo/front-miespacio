@@ -7,6 +7,7 @@ export const consultarVales = createAsyncThunk('vales/consultarVales',
 
 		try {
 			let respuesta = await SAP(redux).consultaVales(mes, ano, modoBusqueda);
+			console.log(respuesta)
 			return redux.fulfillWithValue(respuesta);
 		} catch (error) {
 			let mensaje = SAP.generarErrorFetch(error);

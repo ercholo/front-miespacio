@@ -1,26 +1,26 @@
-import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-import API from "../../api/api";
-import { BoxCargando } from "../../navegacion/BoxCargando";
-import { BoxErrorApi } from "../../navegacion/BoxErrorApi";
-import React from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useStore } from "react-redux";
 import { useParams } from "react-router";
+import { useAutorizacion } from "../../hooks/useAutorizacion";
+import { API } from "../../api/api";
+import { BoxCargando, BoxErrorApi } from "../../navegacion/";
 import { useSnackbar } from "notistack";
 import { isBefore } from "date-fns";
-import { useAutorizacion } from "../../hooks/useAutorizacion";
+import PropTypes from 'prop-types';
+import SendIcon from "@mui/icons-material/Send";
+import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 
-export default function PantallaEncuestas() {
+export const PantallaEncuestas = () => {
 	const redux = useStore();
 	const { idEncuesta } = useParams();
 
-	const [qEncuesta, setQEncuesta] = React.useState({
+	const [qEncuesta, setQEncuesta] = useState({
 		estado: "cargando",
 		encuesta: null,
 		error: null,
 	});
 
-	const fnObtenerDatosEncuesta = React.useCallback(async () => {
+	const fnObtenerDatosEncuesta = useCallback(async () => {
 		setQEncuesta((d) => {
 			return { estado: "cargando", error: null, encuesta: d.encuesta };
 		});
@@ -37,7 +37,7 @@ export default function PantallaEncuestas() {
 		}
 	}, [idEncuesta, setQEncuesta, redux]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		fnObtenerDatosEncuesta();
 	}, [fnObtenerDatosEncuesta]);
 
@@ -95,12 +95,12 @@ const useDebeMostrarseEncuesta = (encuesta) => {
 const FormularioEncuesta = ({ id, titulo, texto, campos, estado, fechaPublicacion, fechaExpiracion, audiencia, anonima, respuesta }) => {
 	const redux = useStore();
 	const { enqueueSnackbar } = useSnackbar();
-	const [qResponder, setQResponder] = React.useState({
+	const [qResponder, setQResponder] = useState({
 		estado: "completado",
 		error: null,
 	});
-	const [contestacion, setContestacion] = React.useState(respuesta);
-	const dispatcher = React.useCallback(
+	const [contestacion, setContestacion] = useState(respuesta);
+	const dispatcher = useCallback(
 		(nombreCampo, valor) => {
 			setContestacion((c) => {
 				return {
@@ -111,7 +111,7 @@ const FormularioEncuesta = ({ id, titulo, texto, campos, estado, fechaPublicacio
 		},
 		[setContestacion]
 	);
-	const fnEnviarRespuesta = React.useCallback(async () => {
+	const fnEnviarRespuesta = useCallback(async () => {
 		delete contestacion._contestada;
 		delete contestacion._codigoEmpleado;
 		setQResponder({ estado: "cargando", error: null });

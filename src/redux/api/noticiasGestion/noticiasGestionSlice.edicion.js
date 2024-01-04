@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import API from '../../../api/api';
+import { API } from '../../../api/api';
 
 
 export const preConsultaNoticiaEdicion = createAsyncThunk('noticiasGestion/preConsultaId',

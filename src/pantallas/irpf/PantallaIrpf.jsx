@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import PantallaRetenciones from "./PantallaRetenciones";
+import { PantallaRetenciones } from "./PantallaRetenciones";
 
 
 export default function PantallaIrpf() {

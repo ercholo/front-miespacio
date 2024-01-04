@@ -11,4 +11,5 @@ export const createCustomSelector = (deps, func) => {
 		return func(...resultados)
 	}
 	return selector;
+	
 }

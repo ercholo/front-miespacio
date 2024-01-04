@@ -10,6 +10,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { limpiarCarrito, limpiarEstadoCreacionPedido, realizarCompra, setMaterialEnCarrito } from "../../redux/api/carritoSlice";
+import PropTypes from 'prop-types';
 
 
 const LineaArticulo = ({ codigo, nombre, descripcion, stock, precio, imagen, cantidad, bloqueado }) => {
@@ -110,7 +111,7 @@ const LineaArticulo = ({ codigo, nombre, descripcion, stock, precio, imagen, can
 	</Paper>
 }
 
-export default function PantallaCarrito() {
+export const PantallaCarrito = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -258,3 +259,15 @@ export default function PantallaCarrito() {
 
 
 }
+
+
+LineaArticulo.propTypes = {
+	codigo: PropTypes.string,
+	nombre: PropTypes.string,
+	descripcion: PropTypes.string,
+	stock: PropTypes.number,
+	precio: PropTypes.number,
+	imagen: PropTypes.string,
+	cantidad: PropTypes.number,
+	bloqueado: PropTypes.bool,
+};

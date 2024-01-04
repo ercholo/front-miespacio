@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const pantallaSlice = createSlice({
 	name: 'api',
 	initialState: {
-		titulo: 'Mi Espacio'// 👩 👵 👩‍🦰 👩‍🦱 👩‍🦳 👱‍♀️' //🎀
+		titulo: 'Mi Espacio' // 👩 👵 👩‍🦰 👩‍🦱 👩‍🦳 👱‍♀️' //🎀
 	},
 	reducers: {
 		setTituloPantalla: (state, action) => {

@@ -1,4 +1,4 @@
-import API from "../../api";
+import { API } from "../../api";
 import endpointsIdEncuestaRespuestas from "./respuestas"
 
 export const get = async (redux, abortController, idEncuesta) => {

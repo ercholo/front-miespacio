@@ -1,12 +1,11 @@
 import { Avatar, Box, Button, ListItem, ListItemAvatar, ListItemText, Paper, Typography } from "@mui/material";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAutorizacion } from "hooks/useAutorizacion";
-//import FavoriteIcon from "@mui/icons-material/Favorite";
 import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
-
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-export default function PanelNotificaciones() {
+
+export const PanelNotificaciones = () => {
+
 	const navigate = useNavigate();
 	const autorizacionEncuesta = useAutorizacion({
 		subdivisionPersonal: [
@@ -103,6 +102,9 @@ export default function PanelNotificaciones() {
 							<>
 								<Typography component="div" variant="body2">
 									El domingo 17 de septiembre Hefame te invita a compartir con tus seres queridos y tus compañer@s una jornada, en familia, de diversión y celebración. ¡Os esperamos!
+								</Typography>
+								<Typography component="div" variant="body2">
+									ESTABA EL SEÑORRRR DON GAAAAAAAAAAAAAAAAAATO
 								</Typography>
 								<Button
 									sx={{ my: 2 }}

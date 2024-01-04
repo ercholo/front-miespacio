@@ -2,9 +2,9 @@
 import { useAutorizacion } from "../../hooks/useAutorizacion";
 import { BoxErrorAutorizacion } from "../BoxErrorAutorizacion";
 import { Routes, Route } from "react-router-dom";
-import PantallaCarrito from "./PantallaCarrito";
-import PantallaCatalogo from "./PantallaCatalogo";
-import PantallaConsulta from "./PantallaConsulta";
+import { PantallaCarrito } from "./PantallaCarrito";
+import { PantallaCatalogo } from "./PantallaCatalogo";
+import { PantallaConsulta } from "./PantallaConsulta";
 
 export default function PantallaVales() {
 

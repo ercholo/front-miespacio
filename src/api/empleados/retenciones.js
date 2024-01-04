@@ -1,5 +1,5 @@
 import MsRestError from "@hefame/microservice-rest-error";
-import API from "../api";
+import { API } from "../api";
 
 export const get = async (redux, abortController, ano) => {
     const respuesta = await API.llamada(redux, abortController, 'get', `/empleados/retenciones/${ano}`);

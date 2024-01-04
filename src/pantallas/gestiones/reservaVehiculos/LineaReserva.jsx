@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useStore } from "react-redux";
 import { BoxErrorApi } from "../../../navegacion/BoxErrorApi";
-import API from "../../../api/api";
+import { API } from "../../../api/api";
 import { LoadingButton } from "@mui/lab";
 import { red } from "@mui/material/colors";
 import {useAutorizacion} from "../../../hooks/useAutorizacion";

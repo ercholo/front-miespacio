@@ -1,4 +1,5 @@
-import React from "react";
+import { useEffect} from "react";
+import PropTypes from 'prop-types';
 
 import { Box, Button, CircularProgress, Paper, Typography, useMediaQuery } from "@mui/material";
 import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
@@ -53,7 +54,8 @@ const DetalleNoticia = ({ noticia }) => {
     );
 };
 
-export default function PantallaNoticia() {
+export const PantallaNoticia = () => {
+
     let { idNoticia } = useParams();
 
     const dispatch = useDispatch();
@@ -61,7 +63,7 @@ export default function PantallaNoticia() {
     const noticia = useSelector((state) => state.noticias.porId.resultado);
     const error = useSelector((state) => state.noticias.porId.error);
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(redux_noticias_consultaId({ idNoticia, formato: "contenido" }));
     }, [dispatch, idNoticia]);
 
@@ -101,4 +103,12 @@ export default function PantallaNoticia() {
     }
 
     return contenido;
+}
+
+DetalleNoticia.defaultProps  = {
+    noticia: PropTypes.undefined 
+}
+
+DetalleNoticia.propTypes = {
+    noticia: PropTypes.object 
 }

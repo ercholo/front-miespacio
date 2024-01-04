@@ -1,4 +1,4 @@
-import API from "../api";
+import { API } from "../api";
 import endpointsIdEncuesta from "./idEncuesta"
 
 export const get = async (redux, abortController) => {
@@ -9,9 +9,7 @@ export const get = async (redux, abortController) => {
     throw json;
 }
 
-const encuestas = {
+export const encuestas = {
     get,
     idEncuesta: endpointsIdEncuesta
 };
-
-export default encuestas;

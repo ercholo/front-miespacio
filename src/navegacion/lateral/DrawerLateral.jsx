@@ -58,7 +58,7 @@ export const DrawerLateral = memo(({ abierto, fnCerrar, fnAbrir }) => {
 					</Box>
 
 				</Box>
-
+5
 			</Box>
 
 			<List>

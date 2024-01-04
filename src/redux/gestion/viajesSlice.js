@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import API from '../../api/api';
+import { API } from '../../api/api';
 import { createCustomSelector } from '../createCustomSelector';
 
 export const redux_gestionViajes_solicitar = createAsyncThunk('gestion/viajes/redux_gestionViajes_solicitar',

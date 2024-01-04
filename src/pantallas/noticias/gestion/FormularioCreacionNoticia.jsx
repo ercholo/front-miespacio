@@ -1,17 +1,4 @@
-import {
-    Alert,
-    Button,
-    Checkbox,
-    CircularProgress,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Alert, Button, Checkbox, CircularProgress, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
@@ -267,7 +254,7 @@ export default function FormularioCreacionNoticia() {
                     label="Título de la noticia"
                     defaultValue={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
-                    error={!Boolean(titulo)}
+                    error={!titulo}
                     sx={{ my: 2, width: "100%" }}
                 />
                 <TextField
@@ -278,7 +265,7 @@ export default function FormularioCreacionNoticia() {
                     size="small"
                     defaultValue={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
-                    error={!Boolean(categoria)}
+                    error={!categoria}
                     sx={{ mb: 4, width: "100%" }}
                 />
                 <Box sx={{ width: "100%" }}>
@@ -449,11 +436,19 @@ export default function FormularioCreacionNoticia() {
                     <DateTimePicker
                         disabled={cargando}
                         label="Fecha de Publicación"
-                        renderInput={(params) => <TextField {...params} />}
+                        // renderInput={(params) => <TextField {...params} />}
                         value={fechaPublicacion}
                         onChange={(nuevaFecha) => {
                             setFechaPublicacion(nuevaFecha);
                         }}
+                        slotProps={{
+							textField: {
+								onBeforeInput: (e) => {
+									e.preventDefault();
+									return false;
+								},
+							}
+						}}
                     />
                 </LocalizationProvider>
 
@@ -461,11 +456,19 @@ export default function FormularioCreacionNoticia() {
                     <DateTimePicker
                         disabled={cargando}
                         label="Fecha de Expiración"
-                        renderInput={(params) => <TextField {...params} />}
+                        // renderInput={(params) => <TextField {...params} />}
                         value={fechaExpiracion}
                         onChange={(nuevaFecha) => {
                             setFechaExpiracion(nuevaFecha);
                         }}
+                        slotProps={{
+							textField: {
+								onBeforeInput: (e) => {
+									e.preventDefault();
+									return false;
+								},
+							}
+						}}
                     />
                 </LocalizationProvider>
             </Box>

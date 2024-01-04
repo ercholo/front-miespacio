@@ -36,6 +36,14 @@ export const PasoTransporte = ({ dispatcher, medioTransporte, fechaViaje, origen
 						value={fechaViaje}
 						// disablePast
 						onChange={(nuevaFecha) => dispatcher('setFechaViaje', nuevaFecha)}
+						slotProps={{
+							textField: {
+								onBeforeInput: (e) => {
+									e.preventDefault();
+									return false;
+								},
+							}
+						}}
 					/>
 				</LocalizationProvider>
 

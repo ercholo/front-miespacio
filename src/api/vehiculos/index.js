@@ -1,4 +1,4 @@
-import API from "../api";
+import { API } from "../api";
 import endpointsIdVehiculo from "./idVehiculo"
 
 export const get = async (redux, abortController) => {
@@ -9,9 +9,7 @@ export const get = async (redux, abortController) => {
     throw json;
 }
 
-const vehiculos = {
+export const vehiculos = {
     get,
     idVehiculo: endpointsIdVehiculo
 };
-
-export default vehiculos;

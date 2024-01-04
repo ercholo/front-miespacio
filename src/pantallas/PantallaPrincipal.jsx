@@ -1,7 +1,8 @@
 import FeedNoticias from "./noticias/FeedNoticias";
-import PanelAccesosRapidos from "./principal/PanelAccesosRapidos";
+import { PanelAccesosRapidos } from "./principal/PanelAccesosRapidos";
 
-export default function PantallaPrincipal() {
+export const PantallaPrincipal = () => {
+    
     return (
         <>
             <PanelAccesosRapidos />          

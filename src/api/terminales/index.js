@@ -1,4 +1,4 @@
-import API from "../api";
+import { API } from "../api";
 
 export const get = async (redux, abortController) => {
     const respuesta = await API.llamada(redux, abortController, 'get', `/terminales`);
@@ -17,9 +17,7 @@ export const put = async (redux, abortController, idTerminal, idVisualTime) => {
     throw json;
 }
 
-const asignaciones = {
+export const terminales = {
     get,
     put
 };
-
-export default asignaciones;

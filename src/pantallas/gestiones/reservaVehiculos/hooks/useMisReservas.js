@@ -1,4 +1,4 @@
-import API from '../../../../api/api';
+import { API } from '../../../../api/api';
 import { addMonths } from 'date-fns';
 import React from 'react';
 import { useStore } from 'react-redux';

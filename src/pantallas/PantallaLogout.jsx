@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect} from "react";
 
 import { Typography, Container, Button, Box } from "@mui/material";
 
@@ -10,13 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { redux_usuario_logout, redux_usuario_select_EstadoInicializacion } from "../redux/usuario/usuarioSlice";
 
 
-export default function PantallaLogout() {
+export const PantallaLogout = () => {
 
 	const dispatch = useDispatch();
 	const [, , removeCookie] = useCookies(['empleado_sessid']);
 	const estadoLogin = useSelector(redux_usuario_select_EstadoInicializacion);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (estadoLogin.estado !== 'logout') {
 			removeCookie('empleado_sessid');
 			dispatch(redux_usuario_logout());
@@ -24,16 +24,9 @@ export default function PantallaLogout() {
 	}, [estadoLogin.estado, dispatch, removeCookie])
 
 
-
 	return (
 		<Container maxWidth="sm">
 
-			{/*<CardMedia
-						component="img"
-						image="/img/successfactorlogo.png"
-						alt="SuccessFactors"
-						sx={{ px: 2, mt: 6, mb: 2 }}
-					/>*/}
 			<Box>
 				<Typography variant="h5">
 					{estadoLogin.estado === 'logout' ? 'Se ha cerrado su sesión en Tu Espacio' : 'Su sesión ha caducado, vuelva a identificarse.'}
@@ -58,7 +51,4 @@ export default function PantallaLogout() {
 
 		</Container>
 	)
-
-
-
 }

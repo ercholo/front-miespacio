@@ -6,10 +6,10 @@ import { gestionViajesSlice } from './gestion/viajesSlice';
 
 import { apiSlice, anticiposSlice, catalogoSlice, carritoSlice, valesSlice, descargaAlbaranPdfSlice, accesosSlice } from './api/';
 import { ticketsSlice } from './tickets/ticketsSlice';
-import { salasSlice } from './api/salas/salasSlice';
+import { maestroAsignacionesSlice } from './api/maestroAsignaciones/maestroAsignacionesSlice';
 import { noticiasGestionSlice } from './api/noticiasGestion/noticiasGestionSlice';
 import { noticiasSlice } from './api/noticias/noticiasSlice';
-import { maestroAsignacionesSlice } from './api/maestroAsignaciones/maestroAsignacionesSlice';
+import { salasSlice } from './api/salas/salasSlice';
 
 window.haztelaNegra = (token) => {
 
@@ -49,4 +49,3 @@ export const store = configureStore({
 		maestroAsignaciones: maestroAsignacionesSlice.reducer,
 	}
 });
-

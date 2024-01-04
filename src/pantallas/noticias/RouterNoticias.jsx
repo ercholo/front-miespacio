@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import RouterGestionNoticias from "./gestion/RouterGestionNoticias";
-import PantallaNoticia from "./PantallaNoticia";
+import { PantallaNoticia } from "./PantallaNoticia";
 import PantallaNoticias from "./PantallaNoticias";
 
 export default function RouterNoticias() {

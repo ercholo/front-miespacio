@@ -11,6 +11,7 @@ import AirplaneTicketIcon from "@mui/icons-material/AirplaneTicket";
 import GroupsIcon from "@mui/icons-material/Groups";
 import TimeToLeaveIcon from "@mui/icons-material/TimeToLeave";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 export const botones = [
   { texto: "Inicio", icono: HomeOutlinedIcon, link: "/" },
@@ -63,13 +64,18 @@ export const botones = [
     icono: AirplaneTicketIcon,
     link: "/gestiones/viajes",
   },
+  {
+    texto: "Ofertas",
+    icono: LocalOfferIcon,
+    link: "/ofertas",
+  },
 
   {
     texto: "Administración",
     esTitulo: true,
     autorizacion: {
       funcionAsignada: [70091000],
-      codigoEmpleado: [92409705, 90101521],
+      codigoEmpleado: [92409705, 90101521, 90101151],
     },
   },
   {
@@ -78,7 +84,7 @@ export const botones = [
     link: "/noticias/gestion",
     autorizacion: {
       funcionAsignada: [70091000],
-      codigoEmpleado: [92409705, 90101521],
+      codigoEmpleado: [92409705, 90101521, 90101151],
     },
   },
   {
@@ -87,7 +93,7 @@ export const botones = [
     link: "/admin/terminales",
     autorizacion: {
       funcionAsignada: [70091000],
-      codigoEmpleado: [92409705, 90101521],
+      codigoEmpleado: [92409705, 90101521, 90101151],
     },
   },
 ];

@@ -1,0 +1,6 @@
+export * from './FormularioCreacionNoticia'
+export * from './FormularioEdicionNoticia'
+export * from './PantallaCreacionNoticia'
+export * from './PantallaEdicionNoticia'
+export * from './PantallaGestionNoticias'
+export * from './RouterGestionNoticias'

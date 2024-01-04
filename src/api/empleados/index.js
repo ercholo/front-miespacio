@@ -7,7 +7,7 @@ import empleados_retenciones from "./retenciones";
 import empleados_nominas from "./nominas";
 import empleados_encuestas from "./encuestas";
 
-const empleados = {
+export const empleados = {
     asignaciones: empleado_asignaciones,
     solicitudesViaje: empleado_solicitudesViaje,
     ticketsSoporte: empleado_ticketsSoporte,
@@ -18,4 +18,3 @@ const empleados = {
     encuestas: empleados_encuestas,
 };
 
-export default empleados;

@@ -1,4 +1,4 @@
-import API from "../../api";
+import { API } from "../../api";
 
 export const get = async (redux, abortController, idEncuesta) => {
     const respuesta = await API.llamada(redux, abortController, 'get', `/encuestas/${idEncuesta}/respuestas`);

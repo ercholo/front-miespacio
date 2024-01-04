@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "react-redux";
 import { useParams } from "react-router";
-import API from "../../api/api";
+import { API } from "../../api/api";
 import { useAutorizacion } from "../../hooks/useAutorizacion";
 import { BoxCargando, BoxErrorApi } from "../../navegacion/";
 import { BoxErrorAutorizacion } from "../../pantallas/BoxErrorAutorizacion";

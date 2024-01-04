@@ -1,15 +1,15 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function useTimeout(callback, delay) {
 
-    const timeoutRef = React.useRef(null);
-    const savedCallback = React.useRef(callback);
+    const timeoutRef = useRef(null);
+    const savedCallback = useRef(callback);
 
-    React.useEffect(() => {
+    useEffect(() => {
         savedCallback.current = callback;
     }, [callback]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const tick = () => savedCallback.current();
         if (typeof delay === 'number' ) {
             clearTimeout(timeoutRef.current);
@@ -20,4 +20,4 @@ export default function useTimeout(callback, delay) {
         }
     }, [delay]);
     return timeoutRef;
-};
+}

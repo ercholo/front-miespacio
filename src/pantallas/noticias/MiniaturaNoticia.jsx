@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Link } from "react-router-dom";
 
-import API from "../../api/api";
+import { API } from "../../api/api";
 import MsRestError from "@hefame/microservice-rest-error";
 import useOnScreen from "../../hooks/useOnScreen";
 
@@ -192,6 +192,7 @@ export const MiniaturaNoticia = ({ noticia }) => {
 MiniaturaNoticia.propTypes = {
     noticia: PropTypes.object 
 }
+
 MiniaturaNoticia.defaultProps  = {
     noticia: PropTypes.undefined 
 }

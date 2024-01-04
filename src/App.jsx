@@ -1,4 +1,4 @@
-import { useCallback, useState} from "react";
+import { useCallback, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PropTypes from 'prop-types';
 
@@ -20,6 +20,8 @@ import { DrawerLateral } from "./navegacion/lateral/DrawerLateral";
 import { Container, Paper } from "@mui/material";
 import { redux_usuario_select_Usuario } from "./redux/usuario/usuarioSlice";
 import { SnackbarProvider } from "notistack";
+import { AbortProvider } from "./context/AbortProvider";
+
 
 const RutasAutenticadas = () => {
     return (
@@ -33,8 +35,9 @@ const RutasAutenticadas = () => {
             <Route path="/tickets" element={<Pantallas.Tickets />} />
             <Route path="/anticipos" element={<Pantallas.Anticipos />} />
             <Route path="/gestiones/*" element={<Pantallas.Gestiones />} />
+            <Route path="/ofertas/*" element={<Pantallas.Ofertas />} />
             <Route path="/noticias/*" element={<Pantallas.Noticias />} />
-			<Route path="/encuestas/:idEncuesta" element={<Pantallas.Encuestas />} />
+            <Route path="/encuestas/:idEncuesta" element={<Pantallas.Encuestas />} />
             <Route path="/admin/terminales" element={<Pantallas.Admin.Terminales />} />
             <Route path="/admin/encuestas/:idEncuesta" element={<Pantallas.Admin.Encuestas />} />
             <Route path="/*" element={<Pantallas.Principal />} />
@@ -82,26 +85,28 @@ function App() {
     }
 
     return (
-        <SnackbarProvider maxSnack={3} dense hideIconVariant>
-            <ThemeProvider theme={tema}>
-                <Router>
-                    <CssBaseline />
+        <AbortProvider>
+            <SnackbarProvider maxSnack={3} dense hideIconVariant>
+                <ThemeProvider theme={tema}>
+                    <Router>
+                        <CssBaseline />
 
-                    <BarrasNavegacion autenticado={usuarioAutenticado} />
+                        <BarrasNavegacion autenticado={usuarioAutenticado} />
 
-                    <Container fixed disableGutters sx={{ mt: { xs: 6, sm: 8 } }}>
-                        <Paper elevation={2} sx={{ pt: { xs: 4, sm: 6 }, pb: { xs: 6, sm: 10 }, px: { xs: 3, sm: 6, md: 12 } }}>
-                            {contenido}
-                        </Paper>
-                    </Container>
-                </Router>
-            </ThemeProvider>
-        </SnackbarProvider>
+                        <Container fixed disableGutters sx={{ mt: { xs: 6, sm: 8 } }}>
+                            <Paper elevation={2} sx={{ pt: { xs: 4, sm: 6 }, pb: { xs: 6, sm: 10 }, px: { xs: 3, sm: 6, md: 12 } }}>
+                                {contenido}
+                            </Paper>
+                        </Container>
+                    </Router>
+                </ThemeProvider>
+            </SnackbarProvider>
+        </AbortProvider>
     );
 }
 
 export default App;
 
-App.propTypes = {
-    autenticado: PropTypes.bool 
+BarrasNavegacion.propTypes = {
+    autenticado: PropTypes.bool
 }
