@@ -2,7 +2,7 @@ export const ofertas = [
     {
         'id': 1,
         'titulo': 'Pulpo Paul',
-        'descripcion': 'Comparativa de historias de IG',
+        'descripcion': 'Al horno siempre',
         'imagen': '/src/pantallas/ofertas/imagenes/1.jpg',
         'enlace': 'https://www.google.es',
         'categoria': {
@@ -206,6 +206,25 @@ export const ofertas = [
         'tags': [
             { id: 981237, titulo: 'Lagartos' },
             { id: 981238, titulo: 'Perros' }
+        ]
+    },
+    {
+        'id': 12,
+        'titulo': 'Murciélago',
+        'descripcion': 'Los murciélagos son los únicos mamíferos capaces de volar',
+        'imagen': 'src/pantallas/ofertas/imagenes/12.jpg',
+        'enlace': 'https://www.google.es',
+        'categoria': {
+            'id': 'Instagram',
+            'titulo': 'Aire'
+        },
+        'localizaciones': [
+            { id: 9812320, titulo: '' },
+            { id: 9812321, titulo: '' }
+        ],
+        'tags': [
+            { id: 981247, titulo: '' },
+            { id: 981248, titulo: '' }
         ]
     }
 ]

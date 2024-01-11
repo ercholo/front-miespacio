@@ -1,7 +1,7 @@
 import { ofertas } from './data/oferta';
 import PropTypes from 'prop-types';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { TextField, Autocomplete, Box, Chip } from '@mui/material/';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -13,14 +13,15 @@ export const FiltrosOfertas = ({ setOfertasFiltradas }) => {
     const [valueTag, setValueTag] = useState([]);
 
     //Leo las localizaciones y categorías de los cards y elimino las repeticiones.
-    const localizaciones = ofertas.flatMap(oferta => oferta.localizaciones.map(loc => loc.titulo)).filter((localizacion, i, arr) => arr.indexOf(localizacion) === i);
-    const tags = ofertas.flatMap(oferta => oferta.tags.map(loc => loc.titulo)).filter((tag, i, arr) => arr.indexOf(tag) === i);
-    const categorias = ofertas.map(oferta => oferta.categoria.titulo).filter((titulo, i, arr) => arr.indexOf(titulo) === i);
+    const localizaciones = ofertas.flatMap(oferta => oferta.localizaciones.map(loc => loc.titulo)).filter(Boolean).filter((localizacion, i, arr) => arr.indexOf(localizacion) === i);
+    const localizacionesVacias = ofertas.flatMap(oferta => oferta.localizaciones.map(loc => loc.titulo)).filter((localizacion, i, arr) => arr.indexOf(localizacion) === i);
+    const tags = ofertas.flatMap(oferta => oferta.tags.map(loc => loc.titulo)).filter(Boolean).filter((tag, i, arr) => arr.indexOf(tag) === i);
+    const categorias = ofertas.map(oferta => oferta.categoria.titulo).filter(Boolean).filter((titulo, i, arr) => arr.indexOf(titulo) === i);
 
     //Capturo el evento del cambio en la Localización
     const handleChangeLocalizacion = (event, value) => {
         event.preventDefault();
-        setValueLocalizacion(value);
+        setValueLocalizacion(value.filter(Boolean))
     }
 
     //Capturo el evento del cambio en la Categoría
@@ -39,28 +40,30 @@ export const FiltrosOfertas = ({ setOfertasFiltradas }) => {
         setValueTag(prevValueTag => prevValueTag.filter(t => t !== tag));
     }
 
-    //Obtengo objetos resultantes de la selección por Categoría
-    const filtrarOfertasCategorias = useCallback(() => {
-        return ofertas.filter(oferta => valueCategoria.includes(oferta.categoria.titulo))
-    }, [valueCategoria]);
+    // //Obtengo objetos resultantes de la selección por Categoría
+    // const filtrarOfertasCategorias = useCallback(() => {
+    //     return ofertas.filter(oferta => valueCategoria.includes(oferta.categoria.titulo))
+    // }, [valueCategoria]);
 
     //Obtengo objetos resultantes de la selección por Localización
-    const filtrarOfertasLocalizaciones = useCallback(() => {
-        return ofertas.filter(oferta =>
-            oferta.localizaciones.some(loc => valueLocalizacion.includes(loc.titulo))
-        )
-    }, [valueLocalizacion]);
+    // const filtrarOfertasLocalizaciones = useCallback(() => {
+    //     return ofertas.filter(oferta =>
+    //         oferta.localizaciones.some(loc => valueLocalizacion.includes(loc.titulo))
+    //     )
+    // }, [valueLocalizacion]);
 
-    const filtrarOfertasTags = useCallback(() => {
-        return ofertas.filter(oferta =>
-            oferta.tags.some(tag => valueTag.includes(tag.titulo))
-        )
-    }, [valueTag]);
+    // const filtrarOfertasTags = useCallback(() => {
+    //     return ofertas.filter(oferta =>
+    //         oferta.tags.some(tag => valueTag.includes(tag.titulo))
+    //     )
+    // }, [valueTag]);
 
 
     useEffect(() => {
 
         let ofertasFiltradas = [...ofertas];
+
+        let ofertasFiltradasVacías = [];
 
         if (Array.isArray(valueCategoria) && valueCategoria.length > 0) {
             ofertasFiltradas = ofertasFiltradas.filter(oferta =>
@@ -69,9 +72,19 @@ export const FiltrosOfertas = ({ setOfertasFiltradas }) => {
         }
 
         if (Array.isArray(valueLocalizacion) && valueLocalizacion.length > 0) {
-            ofertasFiltradas = ofertasFiltradas.filter(oferta =>
-                oferta.localizaciones.some(loc => valueLocalizacion.includes(loc.titulo))
-            );
+
+            ofertasFiltradasVacías = ofertasFiltradas
+                .filter(oferta =>
+                    oferta.localizaciones.some(loc => loc.titulo.length === 0))
+
+            console.log(ofertasFiltradasVacías)
+
+            ofertasFiltradas = ofertasFiltradas
+                .filter(oferta =>
+                    oferta.localizaciones.some(loc => valueLocalizacion.includes(loc.titulo))
+                );
+            ofertasFiltradas = ofertasFiltradas.concat(ofertasFiltradasVacías)
+            console.log(ofertasFiltradas)
         }
 
         if (Array.isArray(valueTag) && valueTag.length > 0) {
@@ -82,7 +95,8 @@ export const FiltrosOfertas = ({ setOfertasFiltradas }) => {
 
         setOfertasFiltradas(ofertasFiltradas);
 
-    }, [valueLocalizacion, filtrarOfertasLocalizaciones, valueCategoria, filtrarOfertasCategorias, valueTag, filtrarOfertasTags, setOfertasFiltradas]);
+        //He eliminado localizaciones y  localizacionesVacias para que no se renderice de más
+    }, [valueLocalizacion, valueCategoria, valueTag]);
 
 
 
@@ -93,9 +107,9 @@ export const FiltrosOfertas = ({ setOfertasFiltradas }) => {
                 <Grid xs={12} sm={12} md={6} lg={6} sx={{ padding: 1 }}>
                     <Autocomplete
                         multiple
-                        id="localizaciones"
+                        id="localizacionesVacias"
                         options={localizaciones}
-                        className='localizaciones'
+                        className='localizacionesVacias'
                         filterSelectedOptions
                         onChange={handleChangeLocalizacion}
                         renderInput={(params) => (
