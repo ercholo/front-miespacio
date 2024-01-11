@@ -11,8 +11,8 @@ export const OfertaCard = ({ id, titulo, descripcion, imagen, enlace, categoria,
             sx={{
                 maxWidth: "auto",
                 margin: "0 auto",
-                padding: "0.1em",
-                borderRadius: 3
+                // padding: "0.1em",
+                borderRadius: 0
             }}
         >
             <CardMedia
@@ -30,6 +30,10 @@ export const OfertaCard = ({ id, titulo, descripcion, imagen, enlace, categoria,
             />
 
             <CardContent sx={{ height: 99 }}>
+                
+                <Typography variant="caption" color="text.secondary" gutterBottom >
+                    <strong> {categoria?.titulo} </strong>
+                </Typography>
 
                 <Typography gutterBottom variant="h5" component="div">
                     {titulo}
@@ -39,9 +43,6 @@ export const OfertaCard = ({ id, titulo, descripcion, imagen, enlace, categoria,
                     {descripcion}
                 </Typography>
 
-                <Typography variant="caption" color="text.secondary" gutterBottom >
-                    <strong> {categoria?.titulo} </strong>
-                </Typography>
 
                 <Typography variant="body2" noWrap gutterBottom sx={{ mt: "auto", mb: "auto" }} component={"div"}>
                     {
@@ -60,9 +61,8 @@ export const OfertaCard = ({ id, titulo, descripcion, imagen, enlace, categoria,
 
             </CardContent>
 
-            <CardActions sx={{ mt: {xs: 7, sm: 10, md: 9, lg: 9} }}>
-                {/* <Button size="small" startIcon={<FileDownloadOutlinedIcon fontSize="small" />} > Descargar </Button> */}
-                <Button startIcon={<DownloadIcon />} > Descargar </Button>
+            <CardActions display="flex" sx={{ mt: {xs: 14, sm: 12, md: 12, lg: 9}, flexDirection: 'row-reverse'}} >
+                <Button variant='outlined' size="small" startIcon={<DownloadIcon />  } > Descargar </Button>
             </CardActions>
 
         </Card>

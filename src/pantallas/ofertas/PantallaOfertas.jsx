@@ -1,20 +1,23 @@
 import { OfertaCard } from "./OfertaCard"
 import { FiltrosOfertas } from "./FiltrosOfertas";
-import { ofertas } from "../ofertas/data/oferta"
 
 import { Box } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
+import { useState } from "react";
 
 export const PantallaOfertas = () => {
 
+    const [ ofertasFiltradas , setOfertasFiltradas ] = useState([]);
+
     return (
-        <div>
-            <FiltrosOfertas />
+
+        <>
+            <FiltrosOfertas setOfertasFiltradas={setOfertasFiltradas} />
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
 
                     {
-                        ofertas.map(oferta => (
+                        ofertasFiltradas.map(oferta => (
 
                             <Grid
                                 sx={{ flexGrow: 1  }}
@@ -33,9 +36,8 @@ export const PantallaOfertas = () => {
                             </Grid>
                         ))
                     }
-
                 </Grid>
             </Box>
-        </div>
+        </>
     )
 }

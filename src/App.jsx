@@ -87,6 +87,7 @@ function App() {
     return (
         <AbortProvider>
             <SnackbarProvider maxSnack={3} dense hideIconVariant>
+                {/* <ThemeProvider theme={darkTheme}> */}
                 <ThemeProvider theme={tema}>
                     <Router>
                         <CssBaseline />

@@ -58,7 +58,7 @@ export const ofertas = [
     },
     {
         'id': 4,
-        'titulo': 'Colibri',
+        'titulo': 'Colibrí',
         'descripcion': 'Peso menos que una pelota de tenis',
         'imagen': 'src/pantallas/ofertas/imagenes/4.jpg',
         'enlace': 'https://www.google.es',

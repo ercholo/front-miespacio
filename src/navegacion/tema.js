@@ -12,3 +12,7 @@ export default createTheme({
 			}
 	}
 })
+
+export const darkTheme = createTheme({
+	palette: { mode: 'dark',	},
+  });
